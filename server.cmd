@@ -1,0 +1,2 @@
+cd app-server
+node .

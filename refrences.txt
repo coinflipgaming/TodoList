@@ -1,0 +1,3 @@
+sqlite and express:
+
+https://www.youtube.com/watch?v=CBWtETJ0LUY - db creation in sqlite and express.js user auth

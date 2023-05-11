@@ -1,0 +1,33 @@
+client.cmd - odpala client react
+server.cmd - odpala server express
+database.cmd - odpala dostęp do db (do edytowania struktury sql)
+
+refrences - linki do źródeł pomocniczych
+
+app-client - folder z projektem strony
+app-server - folder z projektem serevera/api w express z dostępem do bazy sqlite3
+
+PORT client - 3000
+PORT server - 8080
+
+struktura bd:
+
+użytkownicy (nick PK, hasło, imie, nazwisko)
+create table users(nickname varchar(25) not null, password varchar(25) not null, name varchar(25) not null, surname varchar(25) not null, primary key (nickname));
+
+notatki (tytuł, priorytet, opis, sale, nick autora, nicki osób dotyczących notatki w tym autora, data dodania, deadline)
+create table posts(title varchar not null, priority int(1) not null, description varchar, rooms varchar, author_nickname varchar(25) not null, contributors_nicknames varchar not null, date_added datetime not null, deadline datetime not null, foreign key (author_nickname) references users(nickname));
+
+sticky notki (zawartość, data dodania, priorytet)
+create table sticky_notes(content varchar, date_added datetime, priority int(1) not null);
+
+inserty:
+
+insert into users
+values ('nickname', 'haslo', 'imie', 'nazwisko');
+
+insert into posts
+values ('tytuł',5,'opis','203','nickname','nickname','11-0502023','24-05-2023');
+
+insert into sticky_notes
+values ('jakaś sticky notka', '11-0502023',5);

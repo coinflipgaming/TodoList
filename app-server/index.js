@@ -1,4 +1,137 @@
-const app = require("express")();
-const PORT = 8080;
+const express = require('express')
+const app = express()
+const sqlite3 = require('sqlite3')
+const PORT = 8080
 
-app.listen(PORT , () => console.log(`Server is live on http://localhost:${PORT}`));
+//open database from 'sqlite\database.db'
+let db = new sqlite3.Database(`./sqlite/database.db`, (err) => {
+    if (err) {
+        console.log(err.message)
+    } else {
+        console.log('connected to the sqlite database succesfully')
+    }
+})
+
+//json parsing middleware
+app.use(express.json())
+
+// authentication middleware, checks if user provided in json body exists in db
+app.use((req, res, next) => {
+
+    //assigning variables from request
+    const { username, password } = req.body
+
+    //sql request looking for matching user credentials
+    db.all(`select * from users where nickname = '${username}' and password = '${password}'`,
+        (err, rows) => {
+            if (err) {
+                res.send(err.message)
+            }
+            if (rows.length > 0) { 
+                // Access granted...
+                return next()
+            } else {
+                // Access denied...
+                res.status(401).send(`Authentication failed.`) // custom message
+        }
+    })
+})
+
+app.get('/', (req, res) => {
+    res.status(200).send('hi');
+})
+
+//select all notes with the username provided with json body
+app.get('/notes', (req, res) => {
+    const { username } = req.body
+    db.all(`select rowid,* from posts where contributors_nicknames like '%${username}%';`,
+        (err, rows) => {
+            if (err) {
+                res.send(err.message)
+            }
+            if (rows.length > 0) {
+                res.status(200).send(rows)
+            } else {
+                res.status(402).send(`Couldn't send notes.`) // custom message
+            }
+        })
+})
+
+//add a new note with the username provided with json body
+app.post('/notes/add', (req, res) => {
+    const { title, priority, description, rooms, author_nickname, contributors_nicknames, date_added, deadline } = req.body
+    db.all(`insert into posts values ('${title}', '${priority}', '${description}', '${rooms}', '${author_nickname}', '${contributors_nicknames}', '${date_added}', '${deadline}')`)
+    res.status(200).send(`Added '${title}', '${priority}', '${description}', '${rooms}', '${author_nickname}', '${contributors_nicknames}', '${date_added}', '${deadline}'`)
+})
+
+//delete a note with specified row id if json body provided username is among note contributors
+app.delete('/notes/delete', (req, res) => {
+    const { rowid, username } = req.body
+    db.all(`delete from posts where rowid = ${rowid} and contributors_nicknames like '%${username}%'`, (err) => {
+        if (err) {
+            res.send(err.message)
+        } else {
+            res.status(200).send(`Deleted note with id: ${rowid}`) //custom message
+        }
+    })
+})
+
+//modify a note with specified row id if json body provided username is among note contributors
+app.patch('/notes/modify', (req, res) => {
+    const { username, rowid, title, priority, description, rooms, author_nickname, contributors_nicknames, date_added, deadline } = req.body
+    db.all(`update posts set title = '${title}', priority = '${priority}', description = '${description}', rooms = '${rooms}', author_nickname = '${author_nickname}', contributors_nicknames = '${contributors_nicknames}', date_added = '${date_added}', deadline = '${deadline}' where rowid = ${rowid} and contributors_nicknames like '%${username}%';`, (err) => {
+        if (err) {
+            res.send(err.message)
+        } else {
+            res.status(200).send(`Modified record with id: ${rowid}`) //custom message
+        }
+    })
+})
+
+//select all sticky notes if there are any
+app.get('/sticky_notes', (req, res) => {
+    db.all(`select rowid,* from sticky_notes;`,
+        (err, rows) => {
+            if (err) {
+                res.send(err.message)
+            }
+            if (rows.length > 0) {
+                res.status(200).send(rows)
+            } else {
+                res.status(402).send(`There are no notes.`) // custom message
+            }
+        })
+})
+
+//add a new sticky note
+app.post('/sticky_notes/add', (req, res) => {
+    const { content, date_added, priority } = req.body
+    db.all(`insert into sticky_notes values ('${content}', '${date_added}', '${priority}')`)
+    res.status(200).send(`Added '${content}', '${date_added}', '${priority}'`)
+})
+
+//deletes a sticky note
+app.delete('/sticky_notes/delete', (req, res) => {
+    const { rowid } = req.body
+    db.all(`delete from sticky_notes where rowid = ${rowid};`, (err) => {
+        if (err) {
+            res.send(err.message)
+        } else {
+            res.status(200).send(`Deleted sticky note with id: ${rowid}`) //custom message
+        }
+    })
+})
+
+//modify a sticky note
+app.patch('/sticky_notes/modify', (req, res) => {
+    const { rowid, content, date_added, priority } = req.body
+    db.all(`update sticky_notes set content = '${content}', date_added = '${date_added}', priority = '${priority}' where rowid = ${rowid};`, (err) => {
+        if (err) {
+            res.send(err.message)
+        } else {
+            res.status(200).send(`Modified sticky note: '${rowid}', '${content}', '${date_added}', '${priority}'`)
+        }
+    })
+})
+
+app.listen(PORT , () => console.log(`Server is live on http://localhost:${PORT}`))

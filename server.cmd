@@ -1,2 +1,2 @@
 cd app-server
-node .
+npm run dev

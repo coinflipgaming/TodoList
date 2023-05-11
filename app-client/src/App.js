@@ -1,13 +1,11 @@
-﻿import './App.css';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        hellołssss
-      </header>
+      node pakiet manad�ier
     </div>
-  );
+  )
 }
 
 export default App;

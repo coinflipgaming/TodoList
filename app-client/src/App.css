@@ -50,6 +50,14 @@
     clear: both;
 }
 
+#gora {
+    height: 10%;
+    background-color: gray;
+    border-style: solid;
+    border: 2px;
+    border-color: #666464;
+}
+
 #srodek {
     width: 60%;
     height: 960px;
@@ -73,14 +81,6 @@
 
 form {
     text-align: center;
-}
-
-#góra {
-    height: 10%;
-    background-color: gray;
-    border-style: solid;
-    border: 2px;
-    border-color: #666464;
 }
 
 #priorytet {

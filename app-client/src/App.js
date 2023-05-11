@@ -1,4 +1,4 @@
-﻿import './App.css';
+import './App.css';
 
 function App() {
 
@@ -27,7 +27,7 @@ function App() {
     };
 
     return (
-        <>
+        <div className="App">
             <div id="lewo">
                 <form>
                     <input type="text"></input>
@@ -35,7 +35,7 @@ function App() {
             </div>
 
             <div id="srodek">
-                <div id="góra">
+                <div id="gora">
                     <select id="priorytet">
                         <option>Data↓</option>
                         <option>Data↑</option>
@@ -66,7 +66,7 @@ function App() {
                 </div>
             </div>
 
-        </>
+        </div>
     );
 }
 

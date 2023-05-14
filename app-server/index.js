@@ -64,7 +64,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-    res.status(200).send(`{"works":"json"}`);
+    res.status(200).send(`{"works":"true"}`);
 })
 
 //select all notes with the username provided with json header

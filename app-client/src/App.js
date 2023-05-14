@@ -1,21 +1,11 @@
-//import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
+import Notes from './components/Notes/Notes.js'
 
-let data = fetch('http://localhost:8080/notes', {
-    method: 'GET',
-    mode: 'cors',
-    headers: {
-        "Content-Type": "application/json",
-        "username": "asinatio",
-        "password": "haslo",
-        "Accept": "application/json"
-    }
-})
-    .then((res) => { console.log(res.json()) })
 
 function App() {
 
-    function AddKafelek(e) {
+    /*function AddKafelek(e) { <---------------musi tworzy� nowy component
         const el = document.createElement('div');
 
         el.addEventListener('click', function handleClick(event) {
@@ -37,7 +27,7 @@ function App() {
 
         const box = document.getElementById('kafelek');
         box.appendChild(el);
-    };
+    };*/
 
     return (
         <div className="App">
@@ -58,18 +48,10 @@ function App() {
                     <button type="button" id="logowanie">Zaloguj się</button>
                     <input type="range" min="1" max="255" id="size"></input>
                 </div>
-                <div id="kafelek">
-                    <div>
-                        <button type="button" id="done">✔</button>
-                        <button type="button" id="delete">✖</button>
-                    </div>
-                    <p>Nazwa</p>
-                    <p>Opis</p>
-                </div>
-                <div id="dodaj">
-                    <button type="button" id="dodaj" onClick={AddKafelek}>+</button>
-                </div>
+
+                <Notes />
             </div>
+
 
             <div id="prawo">
                 <h2>Notatki</h2>

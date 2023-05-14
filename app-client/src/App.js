@@ -1,4 +1,17 @@
-import './App.css';
+//import { useState, useEffect } from 'react'
+import './App.css'
+
+let data = fetch('http://localhost:8080/notes', {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+        "Content-Type": "application/json",
+        "username": "asinatio",
+        "password": "haslo",
+        "Accept": "application/json"
+    }
+})
+    .then((res) => { console.log(res.json()) })
 
 function App() {
 

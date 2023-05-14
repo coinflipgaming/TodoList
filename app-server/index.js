@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 const sqlite3 = require('sqlite3')
+const bcrypt = require('bcrypt')
+const cors = require('cors')
+const { json } = require('express')
 const PORT = 8080
 
 //open database from 'sqlite\database.db'
@@ -12,38 +15,61 @@ let db = new sqlite3.Database(`./sqlite/database.db`, (err) => {
     }
 })
 
+//cross origin requests middleware
+app.use(cors())
+
 //json parsing middleware
 app.use(express.json())
+
+
+// add user with hashed password
+/*bcrypt.hash("haslo", 10, function (err, hash) {
+    if (err) {
+        console.log(err.message)
+    }
+    db.all(`insert into users values ('asinatio','${hash}','Damian','Mika')`)
+});*/
 
 // authentication middleware, checks if user provided in json body exists in db
 app.use((req, res, next) => {
 
     //assigning variables from request
-    const { username, password } = req.body
+    const { username, password } = req.headers
 
     //sql request looking for matching user credentials
-    db.all(`select * from users where nickname = '${username}' and password = '${password}'`,
+    db.all(`select password from users where nickname = '${username}'`,
         (err, rows) => {
             if (err) {
                 res.send(err.message)
             }
             if (rows.length > 0) { 
-                // Access granted...
-                return next()
+                // user with nickname found
+                //console.log(rows[0].password)
+                bcrypt.compare(password, rows[0].password, (err, result) => {
+                    if (err) {
+                        res.send(err.message)
+                    } else if (result) {
+                        // password is valid
+                        return next()
+                    } else {
+                        // password is invalid
+                        res.status(401).send(`Invalid password.`)
+                    }
+                });
             } else {
-                // Access denied...
-                res.status(401).send(`Authentication failed.`) // custom message
+                // no users match the nickname
+                res.status(401).send(`Username not registered.`) // custom message
         }
     })
 })
 
 app.get('/', (req, res) => {
-    res.status(200).send('hi');
+    res.status(200).send(`{"works":"json"}`);
 })
 
-//select all notes with the username provided with json body
+//select all notes with the username provided with json header
 app.get('/notes', (req, res) => {
-    const { username } = req.body
+    const { username } = req.headers
     db.all(`select rowid,* from posts where contributors_nicknames like '%${username}%';`,
         (err, rows) => {
             if (err) {
@@ -57,16 +83,17 @@ app.get('/notes', (req, res) => {
         })
 })
 
-//add a new note with the username provided with json body
+//add a new note with the username provided with json header
 app.post('/notes/add', (req, res) => {
     const { title, priority, description, rooms, author_nickname, contributors_nicknames, date_added, deadline } = req.body
     db.all(`insert into posts values ('${title}', '${priority}', '${description}', '${rooms}', '${author_nickname}', '${contributors_nicknames}', '${date_added}', '${deadline}')`)
     res.status(200).send(`Added '${title}', '${priority}', '${description}', '${rooms}', '${author_nickname}', '${contributors_nicknames}', '${date_added}', '${deadline}'`)
 })
 
-//delete a note with specified row id if json body provided username is among note contributors
+//delete a note with specified row id if json header provided username is among note contributors
 app.delete('/notes/delete', (req, res) => {
-    const { rowid, username } = req.body
+    const { rowid } = req.body
+    const { username } = req.headers
     db.all(`delete from posts where rowid = ${rowid} and contributors_nicknames like '%${username}%'`, (err) => {
         if (err) {
             res.send(err.message)
@@ -76,9 +103,10 @@ app.delete('/notes/delete', (req, res) => {
     })
 })
 
-//modify a note with specified row id if json body provided username is among note contributors
+//modify a note with specified row id if json header provided username is among note contributors
 app.patch('/notes/modify', (req, res) => {
-    const { username, rowid, title, priority, description, rooms, author_nickname, contributors_nicknames, date_added, deadline } = req.body
+    const { rowid, title, priority, description, rooms, author_nickname, contributors_nicknames, date_added, deadline } = req.body
+    const { username } = req.headers
     db.all(`update posts set title = '${title}', priority = '${priority}', description = '${description}', rooms = '${rooms}', author_nickname = '${author_nickname}', contributors_nicknames = '${contributors_nicknames}', date_added = '${date_added}', deadline = '${deadline}' where rowid = ${rowid} and contributors_nicknames like '%${username}%';`, (err) => {
         if (err) {
             res.send(err.message)

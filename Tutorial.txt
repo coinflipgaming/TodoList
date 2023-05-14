@@ -12,13 +12,13 @@ PORT server - 8080
 
 struktura bd:
 
-użytkownicy (nick PK, hasło, imie, nazwisko)
-create table users(nickname varchar(25) not null, password varchar(25) not null, name varchar(25) not null, surname varchar(25) not null, primary key (nickname));
+u�ytkownicy (nick PK, hasło, imie, nazwisko)
+create table users(nickname varchar(25) not null, password varchar not null, name varchar(25) not null, surname varchar(25) not null, primary key (nickname));
 
 notatki (tytuł, priorytet, opis, sale, nick autora, nicki osób dotyczących notatki w tym autora, data dodania, deadline)
 create table posts(title varchar not null, priority int(1) not null, description varchar, rooms varchar, author_nickname varchar(25) not null, contributors_nicknames varchar not null, date_added datetime not null, deadline datetime not null, foreign key (author_nickname) references users(nickname));
 
-sticky notki (zawartość, data dodania, priorytet)
+sticky notki (zawarto��, data dodania, priorytet)
 create table sticky_notes(content varchar, date_added datetime, priority int(1) not null);
 
 inserty:

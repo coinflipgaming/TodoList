@@ -58,6 +58,7 @@ const Notes = () => {
                 </select>
                 <div class="sortDirection" onClick={sortDirection != sortDirection} id="reverse">↑</div>
                 <h2>Questy</h2>
+
                 <input type="range" id="rowCount" min="1" max="5" onChange={changeSize()}></input>
                 <button onClick={handleClick} id="theme">🌙</button>
 

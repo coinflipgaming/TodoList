@@ -1,5 +1,7 @@
 .Notes{
 	padding: 0px;
+	border: solid;
+	border-color: rebeccapurple;
 }
 .NoteTile {
 	width: 300px;
@@ -20,6 +22,7 @@
 	float: right;
 	display: flex;
 	clear:both;
+	margin-right: 50px;
 }
 
 header {
@@ -49,7 +52,7 @@ h2 {
 }
 
 ul{
-	margin-left: 30px;
+	margin-left: 50px;
 }
 
 .NoteTile:hover {
@@ -58,4 +61,8 @@ ul{
 
 #theme{
 	background: none;
+	height: 25px;
+	width: 25px;
+	text-align: center;
+	margin-right: 20px;
 }

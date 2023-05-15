@@ -22,9 +22,10 @@ body{
     width: 175px;
 }
 
-#select1{
+#select1 {
     width: 180px;
     text-align: center;
+    background-color: gray;
 }
 
 #data{
@@ -37,4 +38,12 @@ body{
 
 #submit {
     width: 88px;
+}
+
+input{
+    background-color: gray;              
+}
+
+textarea {
+    background-color: gray;
 }

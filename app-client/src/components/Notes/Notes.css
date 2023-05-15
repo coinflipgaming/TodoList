@@ -1,5 +1,7 @@
 .Notes{
 	padding: 0px;
+	border: solid;
+	border-color: rebeccapurple;
 }
 .NoteTile {
 	width: 300px;
@@ -20,12 +22,15 @@
 	float: right;
 	display: flex;
 	clear:both;
+	margin-right: 50px;
 }
 
 header {
 	margin-bottom: 20px;
 	background-color: #42275a;
 	display: flex;
+	border-bottom: solid;
+	border-color: rebeccapurple;
 }
 
 #TypeSelect{
@@ -44,12 +49,12 @@ header {
 
 h2 {
 	margin-left:auto;
-	margin-right: 500px;
+	margin-right: 480px;
 	clear: both;
 }
 
 ul{
-	margin-left: 30px;
+	margin-left: 50px;
 }
 
 .NoteTile:hover {
@@ -58,4 +63,8 @@ ul{
 
 #theme{
 	background: none;
+	height: 25px;
+	width: 25px;
+	text-align: center;
+	margin-right: 20px;
 }

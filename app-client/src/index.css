@@ -12,7 +12,7 @@
 }
 
 html {
-    background: linear-gradient(180deg, #42275a, #734b6d);
+    background-color:#D6D6D6;
     font-family: Jura-Medium;
 }
 
@@ -31,12 +31,17 @@ body, html, .Notes, .NoteView, .StickyNotes, .App, #root, ul{
 .NoteView {
     width: 20%;
     float: left;
-    background: linear-gradient(180deg, #42275a, #734b6d);
+    padding: 20px;
+    background-color: #2C2B30;
 }
 
 .StickyNotes {
     width: 22%;
-    background: linear-gradient(180deg, #42275a, #734b6d);
+    background-color: #4F4F51;
+    border-right: solid;
+    border-top: solid;
+    border-bottom: solid;
+    border-color: #2C2B30;
 }
 
 .StickyNotes ul{

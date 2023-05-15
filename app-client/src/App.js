@@ -9,7 +9,7 @@ function App() {
     return (
         <div className="App">
 
-            <NoteView />
+            <NoteView tak="tatkaktka" tytul="Zainstaluj android studio" priority="2" opis="jabadabadu" room="203" osoba="Jakub Perron" data="20.11.2005"/>
 
             <Notes />
 

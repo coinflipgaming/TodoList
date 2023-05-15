@@ -6,44 +6,83 @@
 }
 
 #frima{
-    margin-left: 40px;
+    margin-left: 20px;
     margin-top: 30px;
 }
 
-body{
+body {
     color: white;
 }
 
-#opis{
-    width: 175px;
-}
-
-#tytul{
-    width: 175px;
-}
-
 #select1 {
-    width: 180px;
+    width: 215px;
+    height: 40px;
+    margin: 4px;
+    padding: 0.6vw 1vw 0.4vw;
+    border: 0;
+    border-radius: 0.15vw;
+    outline: none;
+    background-color: #D6D6D6;
+    font-size: 15px;
     text-align: center;
-    background-color: gray;
 }
 
-#data{
-    width: 175px;
-}
-
-#reset{
-    width: 88px;
+#reset {
+    width: 110px;
+    background-color: #F2C4CE;
+    border: solid;
+    border-style: 1px;
+    border-color: #F58F7C;
+    padding: 5px;
 }
 
 #submit {
-    width: 88px;
-}
-
-input{
-    background-color: gray;              
+    width: 110px;
+    background-color:lightgreen;
+    border: solid;
+    border-style: 1px;
+    border-color: green;
+    padding:5px;
 }
 
 textarea {
-    background-color: gray;
+    width: 175px;
+    height: 60px;
+    margin: 4px;
+    padding: 0.6vw 1vw 0.4vw;
+    border: 0;
+    border-radius: 0.15vw;
+    outline: none;
+    background-color: #D6D6D6;
+    font-size: 15px;
+}
+
+#select2 {
+    width: 215px;
+    height: 40px;
+    margin: 4px;
+    padding: 0.6vw 1vw 0.4vw;
+    border: 0;
+    border-radius: 0.15vw;
+    outline: none;
+    background-color: #D6D6D6;
+    font-size: 15px;
+    text-align: center;
+}
+
+.NoteView{
+    background-color: 2C2B30;
+}
+
+input {
+    width: 175px;
+    height: 15px;
+    margin: 4px;
+    padding: 0.6vw 1vw 0.4vw;
+    border: 0;
+    border-radius: 0.15vw;
+    outline: none;
+    background-color: #D6D6D6;
+    font-size: 15px;
+    text-align: center;
 }

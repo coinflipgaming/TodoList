@@ -1,6 +1,7 @@
-.Notes{
+.Notes {
 	padding: 0px;
-	border: solid;
+	border-right: solid;
+	border-left: solid;
 	border-color: rebeccapurple;
 }
 .NoteTile {
@@ -29,8 +30,6 @@ header {
 	margin-bottom: 20px;
 	background-color: #42275a;
 	display: flex;
-	border-bottom: solid;
-	border-color: rebeccapurple;
 }
 
 #TypeSelect{

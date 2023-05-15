@@ -1,0 +1,17 @@
+.Notes{
+	padding: 30px;
+}
+.NoteTile {
+	width: 300px;
+	height: 100px;
+	border-radius: 3px;
+	background-color: #050505;
+	padding: 3px;
+	margin: 3px;
+	color: #808080;
+	float:left;
+	text-align:center;
+}
+.description{
+	word-wrap: break-word;
+}

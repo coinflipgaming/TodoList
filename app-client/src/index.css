@@ -11,6 +11,34 @@
     src: local('Jura-Regular'), url("./fonts/Jura-Regular.ttf") format('truetype');
 }
 
-* {
+html {
+    background-color: #191119;
     font-family: Jura-Medium;
+}
+
+body, html, .Notes, .NoteView, .StickyNotes, .App, #root, ul{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+}
+
+.App, header{
+    display: flex;
+}
+
+.NoteView{
+    width:20%;
+    float:left;
+}
+
+.StickyNotes {
+    width: 20%;
+}
+
+.StickyNotes ul{
+    float:right;
+    display: flex;
+    flex-direction: column;
 }

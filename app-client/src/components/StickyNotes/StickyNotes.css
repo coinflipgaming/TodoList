@@ -1,0 +1,13 @@
+.StickyNoteTile {
+    text-align: center;
+    border: solid;
+    background-color: #424242;
+    color: white;
+    float: right;
+}
+.content{
+    float: left;
+}
+.deleteButton{
+    float: right;
+}

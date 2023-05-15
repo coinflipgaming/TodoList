@@ -27,7 +27,7 @@ insert into users
 values ('nickname', 'haslo', 'imie', 'nazwisko');
 
 insert into posts
-values ('tytu≈Ç',5,'opis','203','nickname','nickname','11-0502023','24-05-2023');
+values ('d≥ugi tytu≥ d≥ugi tytu≥ d≥ugi tytu≥',5,'opis','203','asinatio','nickname,asinatio','11-0502023','24-05-2023');
 
 insert into sticky_notes
 values ('jaka≈õ sticky notka', '11-0502023',5);

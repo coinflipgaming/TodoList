@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import NoteTile from '../NoteTile/NoteTile.js'
+import NoteTile from './NoteTile.js'
+import './Notes.css'
 
 const Notes = () => {
     const [notes, setNotes] = useState([])
@@ -22,15 +23,35 @@ const Notes = () => {
     useEffect(() => {
         fetchData()
     }, [])
+
+    var sortDirection = true; //if true ↑ else ↓
+
+    function sortNotes() {
+        //TODO
+    }
+
+    function changeSize() {
+        document.documentElement.style.setProperty('width',200)
+    }
+
     return (
         <div className="Notes">
+            <header>
+                <select id="TypeSelect">
+                    <option value="date">data</option>
+                    <option value="title">tytuł</option>
+                    <option value="priority">priorytet</option>
+                </select>
+                <div class="sortDirection" onClick={sortDirection != sortDirection}>↑</div>
+                <input type="range" id="rowCount" min="1" max="5" onChange={ changeSize() } />
+
+            </header>
             {notes.length > 0 && (
                 <ul>
                     {notes.map(note => (
                         <NoteTile key={note.rowid} title={note.title} description={note.description}></NoteTile>
                     ))}
                 </ul>
-                
             )}
         </div>
     )

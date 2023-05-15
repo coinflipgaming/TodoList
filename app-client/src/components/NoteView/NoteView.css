@@ -1,0 +1,40 @@
+#title{
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+#frima{
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+body{
+    color: white;
+}
+
+#opis{
+    width: 175px;
+}
+
+#tytul{
+    width: 175px;
+}
+
+#select1{
+    width: 180px;
+    text-align: center;
+}
+
+#data{
+    width: 175px;
+}
+
+#reset{
+    width: 88px;
+}
+
+#submit {
+    width: 88px;
+}

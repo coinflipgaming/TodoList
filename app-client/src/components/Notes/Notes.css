@@ -1,5 +1,5 @@
 .Notes{
-	padding: 30px;
+	padding: 0px;
 }
 .NoteTile {
 	width: 300px;
@@ -8,10 +8,54 @@
 	background-color: #050505;
 	padding: 3px;
 	margin: 3px;
-	color: #808080;
+	color: lightgray;
 	float:left;
 	text-align:center;
 }
 .description{
 	word-wrap: break-word;
+}
+
+#rowcount {
+	float: right;
+	display: flex;
+	clear:both;
+}
+
+header {
+	margin-bottom: 20px;
+	background-color: #42275a;
+	display: flex;
+}
+
+#TypeSelect{
+	float: left;
+	height: 20px;
+	clear:both;
+	margin-left: 30px;
+	margin-top: 20px;
+}
+
+#reverse {
+	color: white;
+	margin-left: 30px;
+	margin-top: 20px;
+}
+
+h2 {
+	margin-left:auto;
+	margin-right: 500px;
+	clear: both;
+}
+
+ul{
+	margin-left: 30px;
+}
+
+.NoteTile:hover {
+	background: linear-gradient(135deg, #000428, #004e92)
+}
+
+#theme{
+	background: none;
 }

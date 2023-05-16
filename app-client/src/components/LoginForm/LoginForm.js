@@ -38,6 +38,7 @@ export default function LoginForm({ setToken }) {
 
     return (
         <div className="LoginForm">
+        <div id="log">
             <h1>Zaloguj się</h1>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -52,7 +53,8 @@ export default function LoginForm({ setToken }) {
                     <button type="submit">Log in</button>
                 </div>
                 <p id="err_message_p"></p>
-            </form>
+                </form>
+            </div>
         </div>
     )
 }

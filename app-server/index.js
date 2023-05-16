@@ -21,15 +21,6 @@ app.use(cors())
 //json parsing middleware
 app.use(express.json())
 
-
-// add user with hashed password
-/*bcrypt.hash("haslo", 10, function (err, hash) {
-    if (err) {
-        console.log(err.message)
-    }
-    db.all(`insert into users values ('asinatio','${hash}','Damian','Mika')`)
-});*/
-
 // authentication middleware, checks if user provided in json body exists in db
 app.use((req, res, next) => {
 
@@ -65,6 +56,17 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
     res.status(200).send(true);
+})
+
+// add user with hashed password
+app.post('/addUser', (req, res) => {
+    const { newUsername, newPassword, newName , newSurname } = req.headers
+    bcrypt.hash(newPassword, 10, function (err, hash) {
+        if (err) {
+            console.log(err.message)
+        }
+        db.all(`insert into users values ('${newUsername}','${hash}','${newName}','${newSurname}')`)
+    });
 })
 
 //select all notes with the username provided with json header

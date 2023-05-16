@@ -1,13 +1,11 @@
+.NoteView{
+    width: 20em;
+}
+
 #title{
     color: white;
     font-size: 40px;
     text-align: center;
-    margin-left: 10px;
-}
-
-#frima{
-    margin-left: 20px;
-    margin-top: 30px;
 }
 
 body {
@@ -15,10 +13,9 @@ body {
 }
 
 #select1 {
-    width: 215px;
+    width: 96.5%;
     height: 40px;
     margin: 4px;
-    padding: 0.6vw 1vw 0.4vw;
     border: 0;
     border-radius: 0.15vw;
     outline: none;
@@ -28,25 +25,21 @@ body {
 }
 
 #reset {
-    width: 110px;
+    width: 50%;
     background-color: #F2C4CE;
-    border: solid;
-    border-style: 1px;
-    border-color: #F58F7C;
+    border: solid 1px #F58F7C;
     padding: 5px;
 }
 
 #submit {
-    width: 110px;
+    width: 50%;
     background-color:lightgreen;
-    border: solid;
-    border-style: 1px;
-    border-color: green;
+    border: solid 1px green;
     padding:5px;
 }
 
 textarea {
-    width: 175px;
+    width: 15em;
     height: 60px;
     margin: 4px;
     padding: 0.6vw 1vw 0.4vw;
@@ -58,7 +51,7 @@ textarea {
 }
 
 #select2 {
-    width: 215px;
+    width: 96.5%;
     height: 40px;
     margin: 4px;
     padding: 0.6vw 1vw 0.4vw;
@@ -70,12 +63,8 @@ textarea {
     text-align: center;
 }
 
-.NoteView{
-    background-color: 2C2B30;
-}
-
 input {
-    width: 175px;
+    width: 15em;
     height: 15px;
     margin: 4px;
     padding: 0.6vw 1vw 0.4vw;

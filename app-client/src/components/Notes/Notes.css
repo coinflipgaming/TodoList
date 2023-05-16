@@ -1,16 +1,12 @@
 .Notes {
-	padding: 10px;
-	border: solid;
-	border-color: #2C2B30;
+	border-right: 2px solid #2C2B30;
 }
 .NoteTile {
 	width: 300px;
 	height: 100px;
 	border-radius: 3px;
 	background-color: #4F4F51;
-	border: solid;
-	border-style: 1px;
-	border-color: #2C2B30;
+	border: solid 1px #2C2B30;
 	padding: 3px;
 	margin: 2px;
 	color: lightgray;
@@ -23,18 +19,16 @@
 
 #rowcount {
 	float: right;
-	display: flex;
 	clear:both;
 	margin-right: 50px;
 }
 
 header {
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 	background-color: #4F4F51;
 	display: flex;
-	border: solid;
-	border-style: 2px;
-	border-color: black;
+	border-bottom: 2px solid black;
+	border-collapse: collapse;
 }
 
 #TypeSelect{
@@ -57,8 +51,8 @@ h2 {
 	clear: both;
 }
 
-ul{
-
+.Notes ul{
+	padding: 5px;
 }
 
 .NoteTile:hover {

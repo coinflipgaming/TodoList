@@ -29,7 +29,6 @@ body, html, .Notes, .NoteView, .StickyNotes, .App, #root, ul{
 }
 
 .NoteView {
-    width: 20%;
     float: left;
     padding: 20px;
     background-color: #2C2B30;
@@ -38,10 +37,6 @@ body, html, .Notes, .NoteView, .StickyNotes, .App, #root, ul{
 .StickyNotes {
     width: 22%;
     background-color: #4F4F51;
-    border-right: solid;
-    border-top: solid;
-    border-bottom: solid;
-    border-color: #2C2B30;
 }
 
 .StickyNotes ul{

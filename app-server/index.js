@@ -53,18 +53,18 @@ app.use((req, res, next) => {
                         return next()
                     } else {
                         // password is invalid
-                        res.status(401).send(`Invalid password.`)
+                        res.status(200).send(false)
                     }
                 });
             } else {
                 // no users match the nickname
-                res.status(401).send(`Username not registered.`) // custom message
+                res.status(200).send(false) // custom message
         }
     })
 })
 
 app.get('/', (req, res) => {
-    res.status(200).send(`{"works":"true"}`);
+    res.status(200).send(true);
 })
 
 //select all notes with the username provided with json header

@@ -3,9 +3,18 @@ import './App.css'
 import Notes from './components/Notes/Notes.js'
 import StickyNotes from './components/StickyNotes/StickyNotes.js'
 import NoteView from './components/NoteView/NoteView.js'
+import LoginForm from './components/LoginForm/LoginForm.js'
 
 
 function App() {
+    const [token, setToken] = useState(false);
+
+    //return login form
+    if (!token || token == false) {
+        return <LoginForm setToken={setToken} />
+    }
+
+    //return basic website if logged in
     return (
         <div className="App">
 
@@ -16,7 +25,7 @@ function App() {
             <StickyNotes />
 
         </div>
-    );
+    )
 }
 
 export default App;

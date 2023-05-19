@@ -23,6 +23,7 @@ header {
 	display: flex;
 	border-bottom: 2px solid black;
 	border-collapse: collapse;
+	padding: 5px;
 }
 
 #TypeSelect{
@@ -40,7 +41,7 @@ header {
 }
 
 h2 {
-	margin-left:auto;
+	margin: auto;
 	margin-right: 400px;
 	clear: both;
 }

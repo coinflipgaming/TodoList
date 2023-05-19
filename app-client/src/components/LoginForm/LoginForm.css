@@ -1,6 +1,6 @@
-.LoginForm{
-    justify-items: center;
-    margin-left: 40em;
+.LoginForm {
+    vertical-align: middle;
+    margin: auto;
     margin-top: 12em;
     width: 20em;
     height: 20em;

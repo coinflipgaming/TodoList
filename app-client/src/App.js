@@ -8,19 +8,36 @@ import LoginForm from './components/LoginForm/LoginForm.js'
 
 function App() {
     const [token, setToken] = useState(false);
+    const [notes, setNotes] = useState([])
+    const [view, setView] = useState(
+        {
+            "author_nickname":"",
+            "contributors_nicknames":"",
+            "date_added":"11-05-2023",
+            "deadline":"12-05-2024",
+            "description":"-",
+            "priority":3,
+            "rooms":"203",
+            "rowid":3,
+            "title":"tytuł"
+        });
+
+    /*useEffect(() => {
+        console.log(view)
+    },[view])*/
 
     //return login form
-    if (!token || token == false) {
-        return <LoginForm setToken={setToken} />
+    if (!token || token === false) {
+        return <LoginForm setToken={ setToken } />
     }
 
     //return basic website if logged in
     return (
         <div className="App">
 
-            <NoteView tak="tatkaktka" tytul="Zainstaluj android studio" priority="2" opis="jabadabadu" room="203" osoba="Jakub Perron" data="20.11.2005"/>
+            <NoteView view={view} setView={setView} token={token} />
 
-            <Notes />
+            <Notes notes={notes} setNotes={setNotes} setView={setView} />
 
             <StickyNotes />
 

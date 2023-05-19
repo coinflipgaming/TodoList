@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NoteTile from './NoteTile.js'
 import './Notes.css'
 
-const Notes = () => {
-    const [notes, setNotes] = useState([])
-
+export default function Notes({ notes, setNotes, setView }) {
     const fetchData = async () => {
         const response = await fetch('http://localhost:8080/notes', {
             mode: 'cors',
@@ -24,29 +22,15 @@ const Notes = () => {
         fetchData()
     }, [])
 
-    var sortDirection = true; //if true ↑ else ↓
+    var sortdirection = true; //if true ↑ else ↓
 
     function sortNotes() {
         //TODO
     }
 
-    function changeSize() {
-        document.documentElement.style.setProperty('width',200)
-    }
-
     function sortDirection() {
-        document.getElementById("reverse").innerHTML = '↓';
+        sortdirection = !sortdirection
     }
-
-    const handleClick = event => {
-        if (event.currentTarget.style.backgroundColor) {
-            event.currentTarget.style.backgroundColor = null;
-            event.currentTarget.style.color = null;
-        } else {
-            event.currentTarget.style.backgroundColor = 'salmon';
-            event.currentTarget.style.backgroundColor = 'black';
-        }
-    };
 
     return (
         <div className="Notes">
@@ -56,10 +40,10 @@ const Notes = () => {
                     <option value="title">tytuł</option>
                     <option value="priority">priorytet</option>
                 </select>
-                <div class="sortDirection" onClick={sortDirection != sortDirection} id="reverse">↑</div>
+                <div className="sortDirection" onClick={sortDirection()} id="reverse">↑</div>
                 <h2>Questy</h2>
 
-                <input type="range" min="1" max="255" onChange={changeSize()}/>
+                <input type="range" min="100" max="500" id="notesize" />
                 
 
             
@@ -67,12 +51,20 @@ const Notes = () => {
             {notes.length > 0 && (
                 <ul>
                     {notes.map(note => (
-                        <NoteTile key={note.rowid} title={note.tytul} description={note.description}></NoteTile>
+                        <NoteTile setView={setView} key={note.rowid}
+                            author_nickname={note.author_nickname}
+                            contributors_nicknames={note.contributors_nicknames}
+                            date_added={note.date_added}
+                            deadline={note.deadline}
+                            description={note.description}
+                            priority={note.priority}
+                            rooms={note.rooms}
+                            rowid={note.rowid}
+                            title={note.title}>
+                        </NoteTile>
                     ))}
                 </ul>
             )}
         </div>
     )
 }
-
-export default Notes

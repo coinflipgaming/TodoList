@@ -31,7 +31,7 @@ export default function LoginForm({ setToken }) {
     function ustaw_err(cos) {
         let error_msg = ""
         if (!cos) {
-            error_msg = "zły login lub hasło"
+            error_msg = "zĹ‚y login lub hasĹ‚o"
         }
         document.getElementById('err_message_p').innerHTML = error_msg
     }
@@ -39,14 +39,14 @@ export default function LoginForm({ setToken }) {
     return (
         <div className="LoginForm">
         <div id="log">
-            <h1>Zaloguj się</h1>
+            <h1>Zaloguj siÄ™</h1>
             <form onSubmit={handleSubmit}>
                 <label>
-                    <p>Nazwa użytkownika</p>
+                    <p>Nazwa uĹĽytkownika</p>
                     <input type="text" onChange={e => setUserName(e.target.value)} />
                 </label>
                 <label>
-                    <p>Hasło</p>
+                    <p>HasĹ‚o</p>
                     <input type="password" onChange={e => setPassword(e.target.value)} />
                 </label>
                 <div>

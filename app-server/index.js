@@ -15,8 +15,18 @@ let db = new sqlite3.Database(`./sqlite/database.db`, (err) => {
     }
 })
 
+//cors settings
+var options = {
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",//IMPORTANT FOR PATCH REQUEST TO WORK
+    "preflightContinue": true,
+    "optionsSuccessStatus": 205
+}
+
 //cross origin requests middleware
-app.use(cors())
+app.use(cors(options))
+
+app.options('/notes/modify',cors())
 
 //json parsing middleware
 app.use(express.json())
@@ -106,12 +116,11 @@ app.delete('/notes/delete', (req, res) => {
 })
 
 //modify a note with specified row id if json header provided username is among note contributors
-app.patch('/notes/modify', (req, res) => {
+app.post('/notes/modify',cors(), (req, res) => {
     const { rowid, title, priority, description, rooms, author_nickname, contributors_nicknames, date_added, deadline } = req.body
-    const { username } = req.headers
-    db.all(`update posts set title = '${title}', priority = '${priority}', description = '${description}', rooms = '${rooms}', author_nickname = '${author_nickname}', contributors_nicknames = '${contributors_nicknames}', date_added = '${date_added}', deadline = '${deadline}' where rowid = ${rowid} and contributors_nicknames like '%${username}%';`, (err) => {
+    db.all(`update posts set title = '${title}', priority = '${priority}', description = '${description}', rooms = '${rooms}', author_nickname = '${author_nickname}', contributors_nicknames = '${contributors_nicknames}', date_added = '${date_added}', deadline = '${deadline}' where rowid = ${rowid};`, (err) => {
         if (err) {
-            res.send(err.message)
+            res.status(409).send(err.message)
         } else {
             res.status(200).send(`Modified record with id: ${rowid}`) //custom message
         }

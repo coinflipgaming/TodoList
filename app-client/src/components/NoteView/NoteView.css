@@ -50,19 +50,6 @@ textarea {
     font-size: 15px;
 }
 
-#select2 {
-    width: 96.5%;
-    height: 40px;
-    margin: 4px;
-    padding: 0.6vw 1vw 0.4vw;
-    border: 0;
-    border-radius: 0.15vw;
-    outline: none;
-    background-color: #D6D6D6;
-    font-size: 15px;
-    text-align: center;
-}
-
 input {
     width: 15em;
     height: 15px;

@@ -1,14 +1,22 @@
-import React, { useState, useEffect } from 'react'
-
-class NoteTile extends React.Component {
-    render() {
-        return (
-            <div className="NoteTile">
-                <div class="title">{this.props.tytul}</div>
-                <div class="description">{this.props.description}</div>
-            </div>
-        )
+export default function NoteTile(props) {
+    function handleClick(e) {
+        e.preventDefault()
+        props.setView({
+            "author_nickname": props.author_nickname,
+            "contributors_nicknames": props.contributors_nicknames,
+            "date_added": props.date_added,
+            "deadline": props.deadline,
+            "description": props.description,
+            "priority": props.priority,
+            "rooms": props.rooms,
+            "rowid": props.rowid,
+            "title": props.title
+        })
     }
+    return (
+        <div className="NoteTile" onClick={handleClick}>
+            <div className="title">{props.tytul}</div>
+            <div className="description">{props.description}</div>
+        </div>
+    )
 }
-
-export default NoteTile

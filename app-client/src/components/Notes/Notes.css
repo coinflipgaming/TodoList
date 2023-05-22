@@ -81,3 +81,8 @@ h2 {
 label {
 	color: #6d6d6d;
 }
+
+#logout{
+	height: 25px;
+	margin-top: 7px;
+}

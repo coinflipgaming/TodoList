@@ -44,6 +44,7 @@ export default function Notes({ notes, setNotes, setView }) {
                 <h2>Questy</h2>
 
                 <input type="range" min="100" max="500" id="notesize" />
+                <button id="logout">Wyloguj</button>
                 
 
             

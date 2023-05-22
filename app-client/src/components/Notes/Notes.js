@@ -44,11 +44,13 @@ export default function Notes({ notes, setNotes, setView }) {
                 <h2>Questy</h2>
 
                 <input type="range" min="100" max="500" id="notesize" />
+                <button id="logout">Wyloguj</button>
                 
 
             
             </header>
             {notes.length > 0 && (
+                <div>
                 <ul>
                     {notes.map(note => (
                         <div class={note.deadline == 0 ? "red" : "blue"}>
@@ -70,7 +72,8 @@ export default function Notes({ notes, setNotes, setView }) {
                     <div id="add">
                     Dodaj notatke
                     </div>
-                </ul>
+                    </ul>
+                </div>
             )}
         </div>
     )

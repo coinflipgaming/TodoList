@@ -30,6 +30,9 @@ const StickyNotes = () => {
                     {stickyNotes.map(note => (
                         <StickyNoteTile key={note.rowid} content={note.content}></StickyNoteTile>
                     ))}
+                    <div id="add1">
+                    Dodaj Notatke
+                    </div>
                 </ul>
             )}
         </div>

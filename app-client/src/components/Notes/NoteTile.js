@@ -14,6 +14,7 @@ export default function NoteTile(props) {
         })
     }
     return (
+        <>
         <div className="NoteTile" onClick={handleClick}>
             <div className="title">{props.tytul}</div>
             <div classname="sala">{props.rooms}</div>
@@ -23,5 +24,10 @@ export default function NoteTile(props) {
             <div classname="deadline">{props.deadline}</div>
             <div className="description">{props.description}</div>
         </div>
+
+            <div className="NoteTile1" onClick={handleClick}>
+  
+            </div>
+        </>
     )
 }

@@ -39,7 +39,7 @@ export default function LoginForm({ setToken }) {
     return (
         <div className="LoginForm">
         <div id="log">
-            <h1>Zaloguj siÄ™</h1>
+            <h1>Zaloguj się</h1>
             <form onSubmit={handleSubmit}>
                 <label>
                     <p>Nazwa uĹĽytkownika</p>

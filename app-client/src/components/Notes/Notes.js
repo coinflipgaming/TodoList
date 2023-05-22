@@ -51,7 +51,8 @@ export default function Notes({ notes, setNotes, setView }) {
             {notes.length > 0 && (
                 <ul>
                     {notes.map(note => (
-                        <NoteTile setView={setView} key={note.rowid}
+                        <div class={note.deadline == 0 ? "red" : "blue"}>
+                            <NoteTile setView={setView} key={note.rowid}
                             author_nickname={note.author_nickname}
                             contributors_nicknames={note.contributors_nicknames}
                             date_added={note.date_added}
@@ -60,9 +61,15 @@ export default function Notes({ notes, setNotes, setView }) {
                             priority={note.priority}
                             rooms={note.rooms}
                             rowid={note.rowid}
-                            title={note.title}>
-                        </NoteTile>
+                            title={note.title}
+                            >
+                            </NoteTile>
+                        </div>
+                        
                     ))}
+                    <div id="add">
+                    Dodaj notatke
+                    </div>
                 </ul>
             )}
         </div>

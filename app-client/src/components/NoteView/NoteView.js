@@ -1,35 +1,52 @@
 import { useEffect, useState } from 'react'
 import './NoteView.css'
+import Buttons from './Buttons.js'
 
 export default function NoteView(props) {
     const [title, setTitle] = useState()
     const [priority, setPriority] = useState()
     const [rooms, setRooms] = useState()
     const [author_nickname, setAuthor_nickname] = useState()
+    const [contributors_nicknames, setContributors_nicknames] = useState()
+    const [date, setDateAdded] = useState()
     const [deadline, setDeadline] = useState()
     const [description, setDescription] = useState()
+
+    const [users, setUsers] = useState({})
+
+    const fetchUsers = async () => {
+        const response = await fetch('http://localhost:8080/users', {
+            mode: 'cors',
+            headers: {
+                "username": props.token.username,
+                "password": props.token.password
+            }
+        }).then((res) => { res.json().then(data => {
+                setUsers(data)
+            })
+        })
+    }
 
     useEffect(() => {
         setTitle(props.view.title)
         setPriority(props.view.priority)
         setRooms(props.view.rooms)
         setAuthor_nickname(props.view.author_nickname)
+        setContributors_nicknames(props.view.contributors_nicknames)
+        setDateAdded(props.view.date_added)
         setDeadline(props.view.deadline)
         setDescription(props.view.description)
+        fetchUsers()
     }, [props.view])
 
     function handleClickModify() {
-        fetchModify()
-    }
-    function fetchModify() {
         fetch('http://localhost:8080/notes/modify', {
             method: 'post',
             mode: 'cors',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'username': 'asinatio',
-                'password': 'haslo'
+                "Content-Type": "application/json",
+                'username': props.token.username,
+                'password': props.token.password
             },
             body: JSON.stringify({
                 "rowid": props.view.rowid,
@@ -38,12 +55,53 @@ export default function NoteView(props) {
                 "description": description,
                 "rooms": rooms,
                 "author_nickname": author_nickname,
-                "contributors_nicknames": props.view.contributors_nicknames,
-                "date_added": "2023-05-19",
+                "contributors_nicknames": contributors_nicknames,
+                "date_added": date,
                 "deadline": deadline
             })
         })
-            //.then((response) => console.log(response))
+        props.refreshNotes()
+    }
+
+    function handleClickAdd() {
+        fetch('http://localhost:8080/notes/add', {
+            method: 'post',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'username': props.token.username,
+                'password': props.token.password
+            },
+            body: JSON.stringify({
+                "title": title,
+                "priority": priority,
+                "description": description,
+                "rooms": rooms,
+                "author_nickname": author_nickname,
+                "contributors_nicknames": contributors_nicknames,
+                "date_added": date,
+                "deadline": deadline
+            })
+        })
+        props.refreshNotes()
+    }
+
+    function handleClickDelete() {
+        fetch('http://localhost:8080/notes/delete', {
+            method: 'delete',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'username': props.token.username,
+                'password': props.token.password
+            },
+            body: JSON.stringify({
+                "rowid": props.view.rowid
+            })
+        })
+        props.refreshNotes()
     }
 
     return (
@@ -63,22 +121,32 @@ export default function NoteView(props) {
                     <input value={rooms} onChange={(e) => setRooms(e.target.value)} />
 
                     Wybierz osobe<br></br>
-                    <select id="select1" value={author_nickname} onChange={(e) => setAuthor_nickname(e.target.value)}>
-                        <option>Jakub Perron</option>
-                        <option>Damian Mika</option>
-                    </select>
+                    
+                    {users.length > 0 && (
+                        <select id="select1" onChange={(e) => {
+                            setAuthor_nickname(e.target.value)
+                            setContributors_nicknames(e.target.value)
+                        }}>
+                            <option value=""></option>
+                        {
+                            users.map(user => (
+                                <option key={user.rowid} value={user.nickname}>
+                                    {user.name} {user.surname}
+                                </option>
+                            ))}
+                        </select>
+                    )}
 
                     Data dodania:
-                    <input type="date" id="data" value={props.view.date_added}/>
+                    <input type="date" id="data" value={date} onChange={(e) => setDateAdded(e.target.value)} />
 
                     Deadline:
                     <input type="date" id="data" value={deadline} onChange={(e) => setDeadline(e.target.value)}/>
 
                     Opis:
                     <textarea id="opis" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
-               </form>
-                <button type="submit" value="submit" id="submit" onClick={handleClickModify}>Done</button>
-               <button type="reset" value="reset" id="reset">Usun</button>
+                </form>
+                <Buttons viewMode={props.viewMode} handleClickAdd={handleClickAdd} handleClickModify={handleClickModify} handleClickDelete={handleClickDelete} />
             </div>
         </div>
     )

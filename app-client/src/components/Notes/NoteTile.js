@@ -12,6 +12,7 @@ export default function NoteTile(props) {
             "rowid": props.rowid,
             "title": props.title
         })
+        props.setViewMode("Modify")
     }
     return (
         <>
@@ -19,19 +20,19 @@ export default function NoteTile(props) {
                 <div className="title">
                     <label>tytul: </label>{props.title}
                 </div>
-                <div classname="sala">
+                <div className="sala">
                     <label>Sala: </label>{props.rooms}
                 </div>
-                <div classname="osoba">
+                <div className="osoba">
                     <label>autor: </label> {props.author_nickname}
                 </div>
-                <div classname="priority">
+                <div className="priority">
                     <label>priorytet: </label>{props.priority}
                 </div>
-                <div classname="data">
+                <div className="data">
                     <label>data: </label>{props.date_added}
                 </div>
-                <div classname="deadline">
+                <div className="deadline">
                     <label>deadline: </label>{props.deadline}
                 </div>
                     <div className="description"><label>opis: </label>{props.description}</div>

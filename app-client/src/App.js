@@ -9,25 +9,36 @@ import LoginForm from './components/LoginForm/LoginForm.js'
 function App() {
     const [token, setToken] = useState(false);
     const [notes, setNotes] = useState([])
+    const [viewMode, setViewMode] = useState("Add")
     const [view, setView] = useState(
         {
             "author_nickname":"",
             "contributors_nicknames":"",
-            "date_added":"11-05-2023",
-            "deadline":"12-05-2024",
-            "description":"-",
-            "priority":3,
-            "rooms":"203",
-            "rowid":3,
-            "title":"tytuł"
+            "date_added": new Date().toISOString().slice(0, 10),
+            "deadline": new Date().toISOString().slice(0, 10),
+            "description":"nowy opis",
+            "priority":1,
+            "rooms":"",
+            "rowid":0,
+            "title":"nowy tytuł"
         });
 
-    /*useEffect(() => {
-        console.log(view)
-    },[view])*/
+    function refreshNotes(){
+        fetch('http://localhost:8080/notes', {
+            mode: 'cors',
+            headers: {
+                "username": token.username,
+                "password": token.password
+            }
+        }).then((res) => {
+            setNotes(res.json().then(data => {
+                setNotes(data)
+            }))
+        })
+    }
 
     //return login form
-    if (!token || token === false) {
+    if (!token || token.auth === false) {
         return <LoginForm setToken={ setToken } />
     }
 
@@ -35,11 +46,11 @@ function App() {
     return (
         <div className="App">
 
-            <NoteView view={view} setView={setView} token={token} />
+            <NoteView refreshNotes={refreshNotes} view={view} token={token} viewMode={viewMode}/>
 
-            <Notes notes={notes} setNotes={setNotes} setView={setView} />
+            <Notes token={token} setToken={setToken} notes={notes} setNotes={setNotes} setView={setView} setViewMode={setViewMode}/>
 
-            <StickyNotes />
+            <StickyNotes token={token} />
 
         </div>
     )

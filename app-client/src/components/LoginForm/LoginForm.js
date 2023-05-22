@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types'
 import './LoginForm.css'
 
@@ -6,8 +6,6 @@ async function loginUser(credentials) {
     return fetch('http://localhost:8080/', {
         method: 'get',
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
             'username': credentials.username,
             'password': credentials.password
         }

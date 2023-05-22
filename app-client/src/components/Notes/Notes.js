@@ -63,6 +63,9 @@ export default function Notes({ notes, setNotes, setView }) {
                             title={note.title}>
                         </NoteTile>
                     ))}
+                    <div id="add">
+                    Dodaj notatke
+                    </div>
                 </ul>
             )}
         </div>

@@ -49,6 +49,7 @@ export default function Notes({ notes, setNotes, setView }) {
             
             </header>
             {notes.length > 0 && (
+                <div>
                 <ul>
                     {notes.map(note => (
                         <NoteTile setView={setView} key={note.rowid}
@@ -66,7 +67,8 @@ export default function Notes({ notes, setNotes, setView }) {
                     <div id="add">
                     Dodaj notatke
                     </div>
-                </ul>
+                    </ul>
+                </div>
             )}
         </div>
     )

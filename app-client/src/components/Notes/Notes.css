@@ -3,7 +3,7 @@
 }
 .NoteTile {
 	width: 300px;
-	height: 100px;
+	height: 250px;
 	border-radius: 3px;
 	background-color: #4F4F51;
 	border: solid 1px #2C2B30;
@@ -76,4 +76,8 @@ h2 {
 
 #add:hover {
 	background-color: #79797a;
+}
+
+label {
+	color: #6d6d6d;
 }

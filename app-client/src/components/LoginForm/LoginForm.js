@@ -42,11 +42,11 @@ export default function LoginForm({ setToken }) {
             <h1>Zaloguj się</h1>
             <form onSubmit={handleSubmit}>
                 <label>
-                    <p>Nazwa uĹĽytkownika</p>
+                    <p>Nazwa użytkownika</p>
                     <input type="text" onChange={e => setUserName(e.target.value)} />
                 </label>
                 <label>
-                    <p>HasĹ‚o</p>
+                    <p>Hasło</p>
                     <input type="password" onChange={e => setPassword(e.target.value)} />
                 </label>
                 <div>

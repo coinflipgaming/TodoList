@@ -1,9 +1,10 @@
 .Notes {
+	width: 100%;
 	border-right: 2px solid #2C2B30;
 }
 .NoteTile {
-	width: 300px;
-	height: 250px;
+	width: 19.3em;
+	height: 13em;
 	border-radius: 3px;
 	background-color: #4F4F51;
 	border: solid 1px #2C2B30;
@@ -48,6 +49,7 @@ h2 {
 
 .Notes ul{
 	padding: 5px;
+	height: 100%;
 }
 
 .NoteTile:hover {
@@ -62,8 +64,8 @@ h2 {
 }
 
 #add {
-	width: 300px;
-	height: 100px;
+	width: 19.3em;
+	height: 13em;
 	border-radius: 3px;
 	background-color: #4F4F51;
 	border: solid 1px #2C2B30;
@@ -72,34 +74,32 @@ h2 {
 	color: lightgray;
 	float: left;
 	text-align: center;
+	justify-content:center;
+}
+
+#add p{
+	margin: 30% auto 0 auto;
+	padding: 0;
+	width: 7em;
 }
 
 #add:hover {
 	background-color: #79797a;
 }
 
-<<<<<<< HEAD
-.red{
+.red .NoteTile{
+	background-color: red;
+}
+
+.red .NoteTile:hover {
 
 }
 
-.red:hover{
-
-}
-.blue{
-
-}
-
-.blue:hover{
-
-}
-=======
-label {
-	color: #6d6d6d;
+.NoteTile label {
+	color: #000;
 }
 
 #logout{
 	height: 25px;
 	margin-top: 7px;
 }
->>>>>>> d9d4207f543433114e084f267e6de9ed243cd408

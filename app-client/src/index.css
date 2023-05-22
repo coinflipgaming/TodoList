@@ -11,15 +11,22 @@
     src: local('Jura-Regular'), url("./fonts/Jura-Regular.ttf") format('truetype');
 }
 
+* {
+    font-family: Jura-Medium;
+    user-select: none;
+}
+
+html, body, #root, .App {
+    height: 100%;
+}
+
 html {
     background-color:#D6D6D6;
-    font-family: Jura-Medium;
 }
 
 body, html, .Notes, .NoteView, .StickyNotes, .App, #root, ul{
     padding: 0;
     margin: 0;
-    height: 100%;
     width: 100%;
     display: inline-block;
 }

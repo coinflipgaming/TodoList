@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types'
 import './LoginForm.css'
 
@@ -6,8 +6,6 @@ async function loginUser(credentials) {
     return fetch('http://localhost:8080/', {
         method: 'get',
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
             'username': credentials.username,
             'password': credentials.password
         }
@@ -25,15 +23,10 @@ export default function LoginForm({ setToken }) {
             password
         })
         setToken(token)
-        ustaw_err(token)
-    }
-
-    function ustaw_err(cos) {
-        let error_msg = ""
-        if (!cos) {
-            error_msg = "zĹ‚y login lub hasĹ‚o"
+        if (token.auth==false) {
+             document.getElementById('err_message_p').innerHTML = "zły login lub hasło!"
         }
-        document.getElementById('err_message_p').innerHTML = error_msg
+        
     }
 
     return (
@@ -50,7 +43,7 @@ export default function LoginForm({ setToken }) {
                     <input type="password" onChange={e => setPassword(e.target.value)} />
                 </label>
                 <div>
-                    <button type="submit">Log in</button>
+                    <button type="submit">Zaloguj się</button>
                 </div>
                 <p id="err_message_p"></p>
                 </form>

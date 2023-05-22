@@ -3,7 +3,7 @@ const app = express()
 const sqlite3 = require('sqlite3')
 const bcrypt = require('bcrypt')
 const cors = require('cors')
-const { json } = require('express')
+const bodyParser = require('body-parser')
 const PORT = 8080
 
 //open database from 'sqlite\database.db'
@@ -26,10 +26,10 @@ var options = {
 //cross origin requests middleware
 app.use(cors(options))
 
-app.options('/notes/modify',cors())
-
-//json parsing middleware
+//json and parsing middleware
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(bodyParser.json())
 
 // authentication middleware, checks if user provided in json body exists in db
 app.use((req, res, next) => {
@@ -54,19 +54,46 @@ app.use((req, res, next) => {
                         return next()
                     } else {
                         // password is invalid
-                        res.status(200).send(false)
+                        res.status(200).send({ "auth": false })
                     }
                 });
             } else {
                 // no users match the nickname
-                res.status(200).send(false) // custom message
+                res.status(200).send({ "auth": false }) // custom message
         }
     })
 })
 
 app.get('/', (req, res) => {
-    res.status(200).send(true);
+    const {username,password} = req.headers
+    res.status(200).send({
+        "auth": true,
+        "username": username,
+        "password": password
+    });
 })
+
+//select all users names and surnames
+app.get('/users', (req, res) => {
+    db.all(`select rowid,nickname,name,surname from users`,
+        (err, rows) => {
+            if (err) {
+                res.send(err.message)
+            }
+            if (rows.length > 0) {
+                res.status(200).send(rows)
+            } else {
+                res.status(400) // custom message
+            }
+        })
+})
+
+/*bcrypt.hash("haslo", 10, function (err, hash) {
+    if (err) {
+        console.log(err.message)
+    }
+    db.all(`insert into users values ('asinatio','${hash}','Damian','Mika')`)
+});*/
 
 // add user with hashed password
 app.post('/addUser', (req, res) => {
@@ -90,7 +117,7 @@ app.get('/notes', (req, res) => {
             if (rows.length > 0) {
                 res.status(200).send(rows)
             } else {
-                res.status(402).send(`Couldn't send notes.`) // custom message
+                res.status(404).send(`Couldn't send notes.`) // custom message
             }
         })
 })
@@ -105,8 +132,7 @@ app.post('/notes/add', (req, res) => {
 //delete a note with specified row id if json header provided username is among note contributors
 app.delete('/notes/delete', (req, res) => {
     const { rowid } = req.body
-    const { username } = req.headers
-    db.all(`delete from posts where rowid = ${rowid} and contributors_nicknames like '%${username}%'`, (err) => {
+    db.all(`delete from posts where rowid = ${rowid}`, (err) => {
         if (err) {
             res.send(err.message)
         } else {
@@ -116,11 +142,12 @@ app.delete('/notes/delete', (req, res) => {
 })
 
 //modify a note with specified row id if json header provided username is among note contributors
-app.post('/notes/modify',cors(), (req, res) => {
+app.post('/notes/modify', (req, res) => {
     const { rowid, title, priority, description, rooms, author_nickname, contributors_nicknames, date_added, deadline } = req.body
-    db.all(`update posts set title = '${title}', priority = '${priority}', description = '${description}', rooms = '${rooms}', author_nickname = '${author_nickname}', contributors_nicknames = '${contributors_nicknames}', date_added = '${date_added}', deadline = '${deadline}' where rowid = ${rowid};`, (err) => {
+    db.all(`update posts set title = '${title}', priority = '${priority}', description = '${description}', rooms = '${rooms}', author_nickname = '${author_nickname}', contributors_nicknames = '${contributors_nicknames}', date_added = '${date_added}', deadline = '${deadline}' where rowid = ${rowid}`, (err) => {
         if (err) {
-            res.status(409).send(err.message)
+            console.log(`update posts set title = '${title}', priority = '${priority}', description = '${description}', rooms = '${rooms}', author_nickname = '${author_nickname}', contributors_nicknames = '${contributors_nicknames}', date_added = '${date_added}', deadline = '${deadline}' where rowid = ${rowid}`)
+            res.status(400).send(err.message)
         } else {
             res.status(200).send(`Modified record with id: ${rowid}`) //custom message
         }
@@ -144,7 +171,7 @@ app.get('/sticky_notes', (req, res) => {
 
 //add a new sticky note
 app.post('/sticky_notes/add', (req, res) => {
-    const { content, date_added, priority } = req.body
+    const { content, date_added, priority } = req.body.json()
     db.all(`insert into sticky_notes values ('${content}', '${date_added}', '${priority}')`)
     res.status(200).send(`Added '${content}', '${date_added}', '${priority}'`)
 })

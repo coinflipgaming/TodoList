@@ -2,20 +2,19 @@ import React, { useState, useEffect } from 'react'
 import StickyNoteTile from './StickyNoteTile.js'
 import './StickyNotes.css'
 
-const StickyNotes = () => {
+export default function StickyNotes({token}) {
     const [stickyNotes, setStickyNotes] = useState([])
 
     const fetchData = async () => {
         const response = await fetch('http://localhost:8080/sticky_notes', {
             mode: 'cors',
             headers: {
-                "username": "asinatio",
-                "password": "haslo"
+                "username": token.username,
+                "password": token.password
             }
         }).then((res) => {
             setStickyNotes(res.json().then(data => {
                 setStickyNotes(data)
-                console.log(data)
             }))
         })
     }
@@ -38,5 +37,3 @@ const StickyNotes = () => {
         </div>
     )
 }
-
-export default StickyNotes

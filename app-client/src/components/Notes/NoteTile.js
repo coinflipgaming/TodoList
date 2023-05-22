@@ -24,10 +24,6 @@ export default function NoteTile(props) {
             <div classname="deadline">{props.deadline}</div>
             <div className="description">{props.description}</div>
         </div>
-
-            <div className="NoteTile1" onClick={handleClick}>
-  
-            </div>
         </>
     )
 }

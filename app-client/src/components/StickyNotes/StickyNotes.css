@@ -16,3 +16,14 @@
     float: right;
     background-color: lightcoral;
 }
+
+#add1 {
+    text-align: center;
+    background-color: #2C2B30;
+    color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 25px;
+    padding: 5px;
+    border-radius: 3px;
+}

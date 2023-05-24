@@ -1,5 +1,5 @@
 .NoteView{
-    width: 20em;
+    width: 18em;
 }
 
 #title{
@@ -14,7 +14,7 @@ body {
 }
 
 #select1 {
-    width: 96.5%;
+    width: 17.62em;
     height: 40px;
     margin: 4px;
     border: 0;
@@ -66,4 +66,16 @@ input {
 
 textarea#opis{
     height: 10em;
+}
+
+#rooms {
+    width: 17.62em;
+    height: 40px;
+    margin: 4px;
+    border: 0;
+    border-radius: 0.15vw;
+    outline: none;
+    background-color: #D6D6D6;
+    font-size: 15px;
+    text-align: center;
 }

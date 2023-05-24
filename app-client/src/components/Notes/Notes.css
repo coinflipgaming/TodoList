@@ -1,9 +1,12 @@
 .Notes {
-	width: 100%;
+	width: 72%;
 	border-right: 2px solid #2C2B30;
+	margin-top: 55px;
+	margin-left: 20.5em;
+	margin-right: 12em;
 }
 .NoteTile {
-	width: 19.3em;
+	width: 19em;
 	height: 13em;
 	border-radius: 3px;
 	background-color: #4F4F51;
@@ -25,20 +28,22 @@ header {
 	border-bottom: 2px solid black;
 	border-collapse: collapse;
 	padding: 5px;
+	width: 68.15%;
 }
 
-#TypeSelect{
+#TypeSelect {
 	float: left;
-	height: 20px;
-	clear:both;
+	height: 25px;
+	clear: both;
 	margin-left: 30px;
-	margin-top: 20px;
+	margin-top: 10px;
+	background-color: #D6D6D6;
 }
 
 #reverse {
-	color: white;
-	margin-left: 30px;
-	margin-top: 20px;
+	color: #D6D6D6;
+	margin-left: 10px;
+	margin-top: 12px;
 }
 
 h2 {

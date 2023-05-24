@@ -109,16 +109,19 @@ export default function NoteView(props) {
             <div id="title">Edytuj zadanie</div>
             <div id="frima">
                 <form>
-                    Tytuł:
+                    Tytuł:<br></br>
                     <input id="tytul" value={title} onChange={e => setTitle(e.target.value)}/>
 
                     Priorytet:
                     <select id="select1" value={priority} onChange={(e) => setPriority(e.target.value) }>
                         <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                    </select><br></br>
+
+                    Sale:<br></br>
+                    <select id="rooms" value={rooms} onChange={(e) => setRooms(e.target.value)} >
+                        <option>2</option><option>3</option><option>4</option><option>105</option><option>109</option><option>117</option><option>121</option><option>Serwerownia</option>
                     </select>
 
-                    Sale:
-                    <input value={rooms} onChange={(e) => setRooms(e.target.value)} />
 
                     Wybierz osobe<br></br>
                     

@@ -32,18 +32,29 @@ body, html, .Notes, .NoteView, .StickyNotes, .App, #root, ul{
 }
 
 .App, header {
-    display: flex;
+    position: absolute;
+    top: 0;
+    align-content: center;
+    
 }
 
 .NoteView {
     float: left;
     padding: 20px;
     background-color: #2C2B30;
+    position: absolute;
+    bottom: 0;
+    top:0;
+    left: 0;
 }
 
 .StickyNotes {
-    width: 22%;
+    width: 16em;
     background-color: #4F4F51;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 
 .StickyNotes ul{

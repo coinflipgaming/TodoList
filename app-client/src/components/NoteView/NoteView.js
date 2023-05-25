@@ -149,8 +149,14 @@ export default function NoteView(props) {
                     
                         <input type="date" id="data" value={deadline} onChange={(e) => setDeadline(e.target.value)} /><br></br><br></br>
                     </div>
+
+                    
+                    <div id="sale">sss</div> <div id="osoby">sss</div>
+                        
+                   <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+
                     <div>
-                    Opis:<br></br>
+                    <br></br>Opis:<br></br>
                     <textarea id="opis" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                     </div>
                 </form>

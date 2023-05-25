@@ -1,9 +1,8 @@
 .Notes {
-	width: 72%;
-	border-right: 2px solid #2C2B30;
-	margin-top: 55px;
-	margin-left: 20.5em;
-	margin-right: 12em;
+	width: 67.9%;
+	height: 100em;
+	float: left;
+
 }
 .NoteTile {
 	width: 19em;
@@ -28,7 +27,6 @@ header {
 	border-bottom: 2px solid black;
 	border-collapse: collapse;
 	padding: 5px;
-	width: 68.15%;
 }
 
 #TypeSelect {

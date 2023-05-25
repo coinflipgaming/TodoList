@@ -1,5 +1,7 @@
 .NoteView{
-    width: 18em;
+    width: 17%;
+    height: 100%;
+    padding-left: 20px;
 }
 
 #title{
@@ -14,7 +16,7 @@ body {
 }
 
 #select1 {
-    width: 17.62em;
+    width: 44%;
     height: 40px;
     margin: 4px;
     border: 0;
@@ -26,17 +28,20 @@ body {
 }
 
 #reset {
-    width: 50%;
+    width: 45%;
     background-color: #F2C4CE;
     border: solid 1px #F58F7C;
     padding: 5px;
+    margin: auto;
 }
 
 #submit {
-    width: 50%;
+    width: 45%;
     background-color:lightgreen;
     border: solid 1px green;
     padding:5px;
+    margin: auto;
+
 }
 
 textarea {
@@ -52,7 +57,7 @@ textarea {
 }
 
 input {
-    width: 15em;
+    width: 33%;
     height: 15px;
     margin: 4px;
     padding: 0.6vw 1vw 0.4vw;
@@ -64,14 +69,22 @@ input {
     text-align: center;
 }
 
-textarea#opis{
-    height: 10em;
+#prio {
+    width: 40%;
+    height: 34px;
+    border: 0;
+    border-radius: 0.15vw;
+    outline: none;
+    background-color: #D6D6D6;
+    font-size: 15px;
+    text-align: center;
 }
 
-#rooms {
-    width: 17.62em;
-    height: 40px;
+#date {
+    width: 20px;
+    height: 15px;
     margin: 4px;
+    padding: 0.6vw 1vw 0.4vw;
     border: 0;
     border-radius: 0.15vw;
     outline: none;

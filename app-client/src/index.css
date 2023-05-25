@@ -24,7 +24,7 @@ html {
     background-color:#D6D6D6;
 }
 
-body, html, .Notes, .NoteView, .StickyNotes, .App, #root, ul{
+body, html, .Notes, .NoteView, .StickyNotes, .App, #root, ul {
     padding: 0;
     margin: 0;
     width: 100%;
@@ -32,33 +32,30 @@ body, html, .Notes, .NoteView, .StickyNotes, .App, #root, ul{
 }
 
 .App, header {
-    position: absolute;
-    top: 0;
     align-content: center;
-    
 }
 
 .NoteView {
     float: left;
-    padding: 20px;
     background-color: #2C2B30;
-    position: absolute;
-    bottom: 0;
-    top:0;
-    left: 0;
+    width: 18%;
 }
 
 .StickyNotes {
-    width: 16em;
+    width: 14%;
     background-color: #4F4F51;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    height: 100%;
 }
 
 .StickyNotes ul{
     float:right;
     display: flex;
     flex-direction: column;
+}
+
+input, select, textarea {
+    -ms-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
 }

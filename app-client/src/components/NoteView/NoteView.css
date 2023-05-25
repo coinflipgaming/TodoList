@@ -56,8 +56,8 @@ textarea {
     font-size: 15px;
 }
 
-input {
-    width: 33%;
+#tytul{
+    width: 55%;
     height: 15px;
     margin: 4px;
     padding: 0.6vw 1vw 0.4vw;
@@ -70,7 +70,7 @@ input {
 }
 
 #prio {
-    width: 40%;
+    width: 15%;
     height: 34px;
     border: 0;
     border-radius: 0.15vw;
@@ -80,8 +80,8 @@ input {
     text-align: center;
 }
 
-#date {
-    width: 20px;
+#data {
+    width: 33%;
     height: 15px;
     margin: 4px;
     padding: 0.6vw 1vw 0.4vw;

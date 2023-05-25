@@ -45,7 +45,7 @@ body {
 }
 
 textarea {
-    width: 15em;
+    width: 80%;
     height: 60px;
     margin: 4px;
     padding: 0.6vw 1vw 0.4vw;
@@ -92,3 +92,21 @@ input {
     font-size: 15px;
     text-align: center;
 }
+
+#sale{
+    background-color: #D6D6D6;
+    height: 175px;
+    width: 46%;
+    float: left;
+    margin-right: 5px;
+    color: black;
+}
+
+#osoby {
+    background-color: #D6D6D6;
+    height: 175px;
+    width: 46%;
+    float: left;
+    color: black;
+}
+

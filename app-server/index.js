@@ -171,7 +171,7 @@ app.get('/sticky_notes', (req, res) => {
 
 //add a new sticky note
 app.post('/sticky_notes/add', (req, res) => {
-    const { content, date_added, priority } = req.body.json()
+    const { content, date_added, priority } = req.body
     db.all(`insert into sticky_notes values ('${content}', '${date_added}', '${priority}')`)
     res.status(200).send(`Added '${content}', '${date_added}', '${priority}'`)
 })

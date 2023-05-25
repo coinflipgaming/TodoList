@@ -4,6 +4,8 @@ import './StickyNotes.css'
 
 export default function StickyNotes({token}) {
     const [stickyNotes, setStickyNotes] = useState([])
+    const [content, setContent] = useState('pusta notatka')
+    const [priority, setPriority] = useState(1)
 
     const fetchData = async () => {
         const response = await fetch('http://localhost:8080/sticky_notes', {
@@ -19,6 +21,25 @@ export default function StickyNotes({token}) {
         })
     }
 
+    const fetchAddNote = async () => {
+        const response = await fetch('http://localhost:8080/sticky_notes/add', {
+            method: 'post',
+            mode: 'cors',
+            headers: {
+                "Content-Type": "application/json",
+                "username": token.username,
+                "password": token.password
+            },
+            body: JSON.stringify({
+                "content": content,
+                "date_added": new Date().toISOString().slice(0, 10),
+                "priority": priority
+            })
+        }).then(() => {
+            fetchData()
+        })
+    }
+
     useEffect(() => {
         fetchData()
     }, [])
@@ -30,7 +51,8 @@ export default function StickyNotes({token}) {
                         <StickyNoteTile key={note.rowid} content={note.content}></StickyNoteTile>
                     ))}
                     <div id="add1">
-                    Dodaj Notatke
+                        <input placeholder="Dodaj notatkę" type="text" value={content} onChange={(e) => { setContent(e.target.value) }} />
+                        <button onClick={fetchAddNote}>+</button>
                     </div>
                 </ul>
             )}

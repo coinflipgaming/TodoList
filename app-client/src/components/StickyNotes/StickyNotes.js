@@ -48,7 +48,7 @@ export default function StickyNotes({token}) {
             {stickyNotes.length > 0 && (
                 <ul>
                     {stickyNotes.map(note => (
-                        <StickyNoteTile key={note.rowid} content={note.content}></StickyNoteTile>
+                        <StickyNoteTile token={token} key={note.rowid} rowid={note.rowid} content={note.content} refresh={fetchData}></StickyNoteTile>
                     ))}
                     <div id="add1">
                         <input placeholder="Dodaj notatkę" type="text" value={content} onChange={(e) => { setContent(e.target.value) }} />

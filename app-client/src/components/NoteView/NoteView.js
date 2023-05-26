@@ -7,7 +7,7 @@ export default function NoteView(props) {
     const [priority, setPriority] = useState()
     const [rooms, setRooms] = useState()
     const [author_nickname, setAuthor_nickname] = useState()
-    const [contributors_nicknames, setContributors_nicknames] = useState()
+    const [contributors_nicknames, setContributors_nicknames] = useState(props.token.username)
     const [date, setDateAdded] = useState()
     const [deadline, setDeadline] = useState()
     const [description, setDescription] = useState()
@@ -19,7 +19,9 @@ export default function NoteView(props) {
             mode: 'cors',
             headers: {
                 "username": props.token.username,
-                "password": props.token.password
+                "password": props.token.password,
+                "name": props.token.name,
+                "surname": props.token.surname
             }
         }).then((res) => { res.json().then(data => {
                 setUsers(data)
@@ -128,29 +130,36 @@ export default function NoteView(props) {
 
                     
                     {users.length > 0 && (
-                        <select id="select1" onChange={(e) => {
-                            setAuthor_nickname(e.target.value)
-                            setContributors_nicknames(e.target.value)
-                        }}>
-                            <option value=""></option>
-                        {
-                            users.map(user => (
-                                <option key={user.rowid} value={user.nickname}>
-                                    {user.name} {user.surname}
+                        <select id="select1"onChange={(e) => {
+                            if (!contributors_nicknames.includes(e.target.value)) {
+                                setContributors_nicknames(contributors_nicknames+","+e.target.value)
+                                if (contributors_nicknames[0] == ",") {
+                                    setContributors_nicknames(contributors_nicknames.substring(1))
+                                }
+                            }
+                        }}><option></option>
+                            {users.map(user => (
+                                <option key={user.rowid} value={user.name+" "+user.surname}>
+                                    {user.name} {user.surname} 
                                 </option>
                             ))}
-                            </select>
+                        </select>
                         
-                    )}<br></br><br></br>
+                    )}<br></br>
                     </div>
-                    <div id="sale">sss</div> <div id="osoby">sss</div>
+                    <div id="sale">sss</div>
+
+                    <ul id="osoby">
+                        {contributors_nicknames && (
+                            contributors_nicknames.split(',').map(user => (
+                                <li key={contributors_nicknames.split(',').indexOf(user)}>{user}</li>
+                            ))
+                        )}
+                    </ul>
                     <div>
+
                         Data dodania i  Deadline:
                         <input type="date" id="data" value={date} onChange={(e) => setDateAdded(e.target.value)} />
-
-                      
-
-                    
                         <input type="date" id="data" value={deadline} onChange={(e) => setDeadline(e.target.value)} /><br></br><br></br>
                     </div>
 

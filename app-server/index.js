@@ -65,12 +65,25 @@ app.use((req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-    const {username,password} = req.headers
-    res.status(200).send({
-        "auth": true,
-        "username": username,
-        "password": password
-    });
+    const { username, password } = req.headers
+    db.all(`select name,surname from users where nickname like '%${username}%' limit 1`,
+        (err, rows) => {
+            if (err) {
+                res.send(err.message)
+            }
+            if (rows.length > 0) {
+                res.status(200).send({
+                    "auth": true,
+                    "username": username,
+                    "password": password,
+                    "name":rows[0].name,
+                    "surname":rows[0].surname
+                });
+            } else {
+                res.status(400) // custom message
+            }
+        })
+    
 })
 
 //select all users names and surnames
@@ -108,8 +121,8 @@ app.post('/addUser', (req, res) => {
 
 //select all notes with the username provided with json header
 app.get('/notes', (req, res) => {
-    const { username } = req.headers
-    db.all(`select rowid,* from posts where contributors_nicknames like '%${username}%';`,
+    const { username, surname } = req.headers
+    db.all(`select rowid,* from posts where contributors_nicknames like '%${surname}%' or author_nickname like '%${username}%';`,
         (err, rows) => {
             if (err) {
                 res.send(err.message)

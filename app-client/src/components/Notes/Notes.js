@@ -9,7 +9,9 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
             mode: 'cors',
             headers: {
                 "username": token.username,
-                "password": token.password
+                "password": token.password,
+                "name": token.name,
+                "surname": token.surname
             }
         }).then((res) => {
             setNotes(res.json().then(data => {
@@ -35,7 +37,7 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
         setViewMode("Add")
         setView({
             "author_nickname": token.username,
-            "contributors_nicknames": token.username,
+            "contributors_nicknames": "",
             "date_added": "",
             "deadline": "",
             "description": "",
@@ -63,10 +65,17 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
                 <input type="range" min="100" max="500" id="notesize" />
                 <button id="logout" onClick={handleClick2}>Wyloguj</button>
             </header>
+            <div id="notes-wrapper">
             {notes.length > 0 && (
                 <>
                     {notes.map(note => (
-                        <div key={note.rowid} className={(Date.parse(note.deadline) < (Date.now() + 86400000)) ? "red" : ""}>
+                        <div key={note.rowid} className={
+                            (Date.parse(note.deadline) < (Date.now() - 9000000))
+                                ? ""
+                                : (Date.parse(note.deadline) < (Date.now() + 86400000))
+                                    ? "red"
+                                    : "green"
+                        }>
                             <NoteTile
                                 setView={setView} 
                                 author_nickname={note.author_nickname}
@@ -86,6 +95,7 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
             )}
             <div id="add" onClick={handleClick1}>
                 <p>Dodaj notatke</p>
+            </div>
             </div>
         </div>
     )

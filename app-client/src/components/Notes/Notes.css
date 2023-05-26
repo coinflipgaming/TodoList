@@ -1,11 +1,9 @@
-.Notes {
-	width: 67.9%;
-	height: 100em;
-	float: left;
-
+#notes-wrapper {
+	overflow-y: scroll;
+	height: 90%;
 }
 .NoteTile {
-	width: 19em;
+	width: 23%;
 	height: 13em;
 	border-radius: 3px;
 	background-color: #4F4F51;
@@ -67,7 +65,7 @@ h2 {
 }
 
 #add {
-	width: 19.3em;
+	width: 23%;
 	height: 13em;
 	border-radius: 3px;
 	background-color: #4F4F51;
@@ -77,7 +75,7 @@ h2 {
 	color: lightgray;
 	float: left;
 	text-align: center;
-	justify-content:center;
+	justify-content: center;
 }
 
 #add p{
@@ -97,7 +95,12 @@ h2 {
 .red .NoteTile:hover {
 
 }
+.green .NoteTile {
+	background-color: green;
+}
+.green .NoteTile:hover {
 
+}
 .NoteTile label {
 	color: #000;
 }

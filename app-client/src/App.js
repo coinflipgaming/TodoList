@@ -23,12 +23,18 @@ function App() {
             "title":"nowy tytuł"
         });
 
+    useEffect(() => {
+        console.log(token)
+    },[token])
+
     function refreshNotes(){
         fetch('http://localhost:8080/notes', {
             mode: 'cors',
             headers: {
                 "username": token.username,
-                "password": token.password
+                "password": token.password,
+                "name": token.name,
+                "surname": token.surname
             }
         }).then((res) => {
             setNotes(res.json().then(data => {

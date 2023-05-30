@@ -1,16 +1,26 @@
-#done {
-    float: right;
-    height: 50px;
-    border-radius: 0px 10px 0px 0px;
-    width: 25px;
-    background-color: rgb(3, 187, 3);
+.NoteView {
+    top: 0;
+    width: 15vw;
+    padding: 1vw;
+    text-align: center;
+    background-color: var(--menu);
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
-
-#delete {
-    float: right;
-    height: 50px;
-    clear: both;
-    border-radius: 0px 0px 10px 0px;
-    width: 25px;
-    background-color: red;
+.Notes {
+    position: absolute;
+    left: 17vw;
+    right: 12.2vw;
+    height: 89%;   
+}
+.StickyNotes {
+    background-color: #4F4F51;
+    display: inline-block;
+    top: 0;
+    bottom: 0;
+    padding: 0.1vw;
+    width: 12vw;
+    position: absolute;
+    right: 0;
 }

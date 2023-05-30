@@ -3,7 +3,9 @@ import NoteTile from './NoteTile.js'
 import './Notes.css'
 
 export default function Notes({ token, notes, setToken, setNotes, setView, setViewMode }) {
-
+    const [sort, setSort] = useState("deadline")
+    const [sortdir, setSortdir] = useState("desc")
+    
     const fetchNotes = async () => {
         const response = await fetch('http://localhost:8080/notes', {
             mode: 'cors',
@@ -11,7 +13,9 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
                 "username": token.username,
                 "password": token.password,
                 "name": token.name,
-                "surname": token.surname
+                "surname": token.surname,
+                "sort": sort,
+                "sortdir": sortdir
             }
         }).then((res) => {
             setNotes(res.json().then(data => {
@@ -22,25 +26,24 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
 
     useEffect(() => {
         fetchNotes()
-    }, [])
-
-    var sortdirection = true; //if true ↑ else ↓
-
-    function sortNotes() {
-        //TODO
-    }
+    },[sort,sortdir])
 
     function sortDirection() {
-        sortdirection = !sortdirection
+        if (sortdir == "desc") {
+            setSortdir("asc")
+        }
+        else {
+            setSortdir("desc")
+        }
     }
     function handleClick1() {
         setViewMode("Add")
         setView({
             "author_nickname": token.username,
-            "contributors_nicknames": "",
-            "date_added": "",
-            "deadline": "",
-            "description": "",
+            "contributors_nicknames": token.name + " " + token.surname,
+            "date_added": new Date().toISOString().slice(0, 10),
+            "deadline": new Date().toISOString().slice(0, 10),
+            "description": "nowy opis",
             "priority": 1,
             "rooms": "",
             "rowid": 0,
@@ -53,13 +56,14 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
 
     return (
         <div className="Notes">
-            <header>
-                <select id="TypeSelect">
-                    <option value="date">data</option>
+            <header className="nav">
+                <select id="TypeSelect" onChange={(e) => { setSort(e.target.value) }}>
+                    <option value="date_added">data</option>
                     <option value="title">tytuł</option>
                     <option value="priority">priorytet</option>
+                    <option value="deadline">deadline</option>
                 </select>
-                <div className="sortDirection" onClick={sortDirection()} id="reverse">↑</div>
+                <div className="sortDirection" onClick={sortDirection} id="reverse">↑</div>
                 <h2>Questy</h2>
 
                 <input type="range" min="100" max="500" id="notesize" />
@@ -70,7 +74,7 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
                 <>
                     {notes.map(note => (
                         <div key={note.rowid} className={
-                            (Date.parse(note.deadline) < (Date.now() - 9000000))
+                            (Date.parse(note.deadline) < (Date.now() - 90000000))
                                 ? ""
                                 : (Date.parse(note.deadline) < (Date.now() + 86400000))
                                     ? "red"

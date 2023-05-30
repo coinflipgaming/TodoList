@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types'
 import './LoginForm.css'
+import Logo from '../../images/amw_logo.png'
 
 async function loginUser(credentials) {
     return fetch('http://localhost:8080/', {
@@ -30,25 +31,22 @@ export default function LoginForm({ setToken }) {
     }
 
     return (
-        <div className="LoginForm">
-        <div id="log">
-            <h1>Zaloguj się</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    <p>Nazwa użytkownika</p>
-                    <input type="text" onChange={e => setUserName(e.target.value)} />
-                </label>
-                <label>
-                    <p>Hasło</p>
-                    <input type="password" onChange={e => setPassword(e.target.value)} />
-                </label>
-                <div>
-                    <button type="submit">Zaloguj się</button>
-                </div>
+        <>
+            <img src={Logo} alt="Akademia Marynarki Wojennej Gdynia" className="Logo"/>
+
+            <form className="LoginForm" onSubmit={handleSubmit}>
+                <h1>Zaloguj się</h1>
+
+                <label>Nazwa użytkownika</label><br/>
+                <input type="text" onChange={e => setUserName(e.target.value)} /><br />
+                
+                <label>Hasło</label><br />
+                <input type="password" onChange={e => setPassword(e.target.value)} /><br />
+
+                <button type="submit">Zaloguj się</button>
                 <p id="err_message_p"></p>
-                </form>
-            </div>
-        </div>
+            </form>
+        </>
     )
 }
 

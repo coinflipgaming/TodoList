@@ -122,12 +122,20 @@ app.post('/addUser', (req, res) => {
 //select all notes with the username provided with json header
 app.get('/notes', (req, res) => {
     const { username, surname } = req.headers
-    db.all(`select rowid,* from posts where contributors_nicknames like '%${surname}%' or author_nickname like '%${username}%';`,
+    var sort = req.headers.sort
+    var sortdir = req.headers.sortdir
+    if (sort == undefined || !sortdir == undefined) {
+        sort = "deadline"
+        sortdir = "desc"
+    }
+    console.log(sort, sortdir)
+    db.all(`select rowid,* from posts where contributors_nicknames like '%${surname}%' or author_nickname like '%${username}%' order by ${sort}`+" "+`${sortdir};`,
         (err, rows) => {
             if (err) {
                 res.send(err.message)
             }
             if (rows.length > 0) {
+                console.log(rows)
                 res.status(200).send(rows)
             } else {
                 res.status(404).send(`Couldn't send notes.`) // custom message

@@ -1,34 +1,44 @@
 .StickyNoteTile {
+    display: inline-flex;
     text-align: center;
     background-color: #2C2B30;
     color: white;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 25px;
-    padding: 5px;
-    border-radius: 3px;
-    float: right;
+    height: auto;
+    font-size: 1vw;
+    margin: 0.2vw;
+    font-size: 1vw;
 }
-
+.StickyNoteTile textarea{
+    height: auto;
+    width: 9.6vw;
+    word-break: break-word;
+    padding: 0;
+    margin: 0.1vw;
+}
 .content{
     float: left;
+}
+.StickyNotes ul {
+    height:100%;
 }
 .deleteButton{
     float: right;
     background-color: lightcoral;
 }
-
 #add1 {
+    height: min(2vw);
     text-align: center;
     background-color: #2C2B30;
     color: white;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 25px;
-    padding: 5px;
     border-radius: 3px;
+    margin: 0.2vw;
 }
-
-    #add1:hover {
-        background-color: #D6D6D6;
-    }
+#add1 input{
+    width: 7vw;
+}
+#add1 button {
+    float: right;
+}
+#add1:hover {
+    background-color: #D6D6D6;
+}

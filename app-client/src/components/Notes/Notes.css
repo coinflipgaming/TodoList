@@ -1,30 +1,29 @@
 #notes-wrapper {
+	padding: 1.1vw;
 	overflow-y: scroll;
-	height: 90%;
+	height: 98%;
 }
 .NoteTile {
-	width: 23%;
-	height: 13em;
+	font-size: 1vw;
+	width: 15.4vw;
+	height: 14.5vw;
 	border-radius: 3px;
-	background-color: #4F4F51;
-	border: solid 1px #2C2B30;
-	padding: 3px;
+	background-color: rgb(136, 137, 168);
+	border: solid 1px rgb(112, 112, 138);
+	padding: 0.39vw;
 	margin: 2px;
 	color: lightgray;
-	float:left;
-	text-align:center;
+	float: left;
+	text-align: center;
 }
 .description{
 	word-wrap: break-word;
 }
 
-header {
-	margin-bottom: 5px;
+.nav {
+	padding: 1vw;
 	background-color: #4F4F51;
 	display: flex;
-	border-bottom: 2px solid black;
-	border-collapse: collapse;
-	padding: 5px;
 }
 
 #TypeSelect {
@@ -54,7 +53,7 @@ h2 {
 }
 
 .NoteTile:hover {
-	background: linear-gradient(135deg, #000428, #004e92)
+	background: linear-gradient(135deg, rgb(136, 137, 168), #004e92)
 }
 
 #rowcount {
@@ -65,17 +64,17 @@ h2 {
 }
 
 #add {
-	width: 23%;
-	height: 13em;
+	font-size: 1vw;
+	width: 15.4vw;
+	height: 14.5vw;
 	border-radius: 3px;
-	background-color: #4F4F51;
-	border: solid 1px #2C2B30;
-	padding: 3px;
+	background-color: rgb(161, 154, 104);
+	border: solid 1px rgb(130, 125, 85);
+	padding: 0.39vw;
 	margin: 2px;
 	color: lightgray;
 	float: left;
 	text-align: center;
-	justify-content: center;
 }
 
 #add p{
@@ -84,23 +83,27 @@ h2 {
 	width: 7em;
 }
 
-#add:hover {
-	background-color: #79797a;
+	#add:hover {
+		background: linear-gradient(135deg, rgb(161, 154, 104), orange)
+	}
+
+.red .NoteTile {
+	background-color: rgb(166, 99, 91);
+	color: white;
+	border-color: rgb(140, 83, 76);
 }
 
-.red .NoteTile{
-	background-color: red;
-}
-
-.red .NoteTile:hover {
-
-}
+	.red .NoteTile:hover {
+		background: linear-gradient(135deg, rgb(166, 99, 91), red)
+	}
 .green .NoteTile {
-	background-color: green;
+	background-color: rgb(126, 163, 136);
+	color: white;
+	border-color: rgb(39, 161, 72);
 }
-.green .NoteTile:hover {
-
-}
+	.green .NoteTile:hover {
+		background: linear-gradient(135deg, rgb(53, 173, 35), #004e92)
+	}
 .NoteTile label {
 	color: #000;
 }

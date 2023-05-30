@@ -5,26 +5,24 @@ import StickyNotes from './components/StickyNotes/StickyNotes.js'
 import NoteView from './components/NoteView/NoteView.js'
 import LoginForm from './components/LoginForm/LoginForm.js'
 
-
 function App() {
     const [token, setToken] = useState(false);
     const [notes, setNotes] = useState([])
-    const [viewMode, setViewMode] = useState("Add")
-    const [view, setView] = useState(
-        {
-            "author_nickname":"",
-            "contributors_nicknames":"",
-            "date_added": new Date().toISOString().slice(0, 10),
-            "deadline": new Date().toISOString().slice(0, 10),
-            "description":"nowy opis",
-            "priority":1,
-            "rooms":"",
-            "rowid":0,
-            "title":"nowy tytuł"
-        });
+    const [viewMode, setViewMode] = useState("")
+    const [view, setView] = useState();
 
     useEffect(() => {
-        console.log(token)
+        setView({
+                "author_nickname": "",
+                "contributors_nicknames": token.name + " " + token.surname,
+                "date_added": new Date().toISOString().slice(0, 10),
+                "deadline": new Date().toISOString().slice(0, 10),
+                "description": "nowy opis",
+                "priority": 1,
+                "rooms": "",
+                "rowid": 0,
+                "title": "nowy tytuł"
+            })
     },[token])
 
     function refreshNotes(){

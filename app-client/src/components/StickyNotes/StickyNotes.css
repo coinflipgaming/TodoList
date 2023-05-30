@@ -1,10 +1,19 @@
 .StickyNoteTile {
+    display: inline-flex;
     text-align: center;
     background-color: #2C2B30;
     color: white;
-    height: 2vw;
+    height: auto;
     font-size: 1vw;
     margin: 0.2vw;
+    font-size: 1vw;
+}
+.StickyNoteTile textarea{
+    height: auto;
+    width: 9.6vw;
+    word-break: break-word;
+    padding: 0;
+    margin: 0.1vw;
 }
 .content{
     float: left;

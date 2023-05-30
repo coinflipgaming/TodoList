@@ -210,7 +210,7 @@ app.delete('/sticky_notes/delete', (req, res) => {
 })
 
 //modify a sticky note
-app.patch('/sticky_notes/modify', (req, res) => {
+app.post('/sticky_notes/modify', (req, res) => {
     const { rowid, content, date_added, priority } = req.body
     db.all(`update sticky_notes set content = '${content}', date_added = '${date_added}', priority = '${priority}' where rowid = ${rowid};`, (err) => {
         if (err) {

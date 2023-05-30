@@ -23,6 +23,7 @@
 * {
     font-family: Jura-Medium;
     user-select: none;
+    resize: none;
 }
 
 html, body, .App, #root {

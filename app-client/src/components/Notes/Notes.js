@@ -26,7 +26,6 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
 
     useEffect(() => {
         fetchNotes()
-        console.log(sort,sortdir)
     },[sort,sortdir])
 
     function sortDirection() {
@@ -41,10 +40,10 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
         setViewMode("Add")
         setView({
             "author_nickname": token.username,
-            "contributors_nicknames": "",
-            "date_added": "",
-            "deadline": "",
-            "description": "",
+            "contributors_nicknames": token.name + " " + token.surname,
+            "date_added": new Date().toISOString().slice(0, 10),
+            "deadline": new Date().toISOString().slice(0, 10),
+            "description": "nowy opis",
             "priority": 1,
             "rooms": "",
             "rowid": 0,
@@ -75,7 +74,7 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
                 <>
                     {notes.map(note => (
                         <div key={note.rowid} className={
-                            (Date.parse(note.deadline) < (Date.now() - 9000000))
+                            (Date.parse(note.deadline) < (Date.now() - 90000000))
                                 ? ""
                                 : (Date.parse(note.deadline) < (Date.now() + 86400000))
                                     ? "red"

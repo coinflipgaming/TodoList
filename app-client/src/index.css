@@ -23,6 +23,7 @@
 * {
     font-family: Jura-Medium;
     user-select: none;
+    resize: none;
 }
 
 html, body, .App, #root {
@@ -36,6 +37,7 @@ html, body, .App, #root {
 ul, li{
     padding: 0;
     margin: 0;
+    list-style: none;
 }
 
 html {

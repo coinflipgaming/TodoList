@@ -84,7 +84,7 @@ h2 {
 }
 
 	#add:hover {
-		background: linear-gradient(135deg, rgb(161, 154, 104), #004e92)
+		background: linear-gradient(135deg, rgb(161, 154, 104), orange)
 	}
 
 .red .NoteTile {
@@ -94,7 +94,7 @@ h2 {
 }
 
 	.red .NoteTile:hover {
-		background: linear-gradient(135deg, red, #004e92)
+		background: linear-gradient(135deg, rgb(166, 99, 91), red)
 	}
 .green .NoteTile {
 	background-color: rgb(126, 163, 136);

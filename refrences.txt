@@ -1,0 +1,7 @@
+sqlite and express:
+
+https://www.youtube.com/watch?v=CBWtETJ0LUY - db creation in sqlite and express.js user auth
+
+react:
+
+https://www.w3schools.com/react/react_components.asp - components, importing and exporting

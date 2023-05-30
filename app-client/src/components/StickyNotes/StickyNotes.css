@@ -38,6 +38,7 @@
 }
 #add1 button {
     float: right;
+    margin-top: 0.4vw;
 }
 #add1:hover {
     background-color: #D6D6D6;

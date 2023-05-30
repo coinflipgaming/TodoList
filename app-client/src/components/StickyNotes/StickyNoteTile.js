@@ -6,10 +6,7 @@ export default function StickyNoteTile(props) {
 
     useEffect(() => {
         setContent(props.content)
-    }, [props.content],[])
-    useEffect(() => {
-        fetchModifyNote() 
-    }, [content])
+    }, [props.content], [], [])
 
     function fetchModifyNote() {
         fetch('http://localhost:8080/sticky_notes/modify', {
@@ -47,7 +44,7 @@ export default function StickyNoteTile(props) {
 
     return (
         <div className="StickyNoteTile">
-            <textarea className="content" value={content} onChange={(e) => { setContent(e.target.value)} } />
+            <textarea className="content" value={content} onChange={(e) => { setContent(e.target.value) }} onBlur={fetchModifyNote} />
             <button className="deleteButton" onClick={fetchDeleteNote}>✖</button>
         </div>
     )

@@ -13,13 +13,13 @@ function App() {
 
     useEffect(() => {
         setView({
-                "author_nickname": "",
-                "contributors_nicknames": token.name + " " + token.surname,
+                "author_nickname": `${token.name} ${token.surname}`,
+                "contributors_nicknames": [`${token.name} ${token.surname}`],
                 "date_added": new Date().toISOString().slice(0, 10),
                 "deadline": new Date().toISOString().slice(0, 10),
                 "description": "nowy opis",
                 "priority": 1,
-                "rooms": "",
+                "rooms": [],
                 "rowid": 0,
                 "title": "nowy tytuł"
             })

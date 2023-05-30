@@ -128,14 +128,12 @@ app.get('/notes', (req, res) => {
         sort = "deadline"
         sortdir = "desc"
     }
-    console.log(sort, sortdir)
     db.all(`select rowid,* from posts where contributors_nicknames like '%${surname}%' or author_nickname like '%${username}%' order by ${sort}`+" "+`${sortdir};`,
         (err, rows) => {
             if (err) {
                 res.send(err.message)
             }
             if (rows.length > 0) {
-                console.log(rows)
                 res.status(200).send(rows)
             } else {
                 res.status(404).send(`Couldn't send notes.`) // custom message

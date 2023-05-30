@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NoteTile from './NoteTile.js'
 import './Notes.css'
 
-export default function Notes({ token, notes, setToken, setNotes, setView, setViewMode }) {
+export default function Notes({ token, notes, setToken, setNotes, setView, setViewMode , setDisplayUsers}) {
     const [sort, setSort] = useState("deadline")
     const [sortdir, setSortdir] = useState("desc")
     
@@ -28,19 +28,11 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
         fetchNotes()
     },[sort,sortdir])
 
-    function sortDirection() {
-        if (sortdir == "desc") {
-            setSortdir("asc")
-        }
-        else {
-            setSortdir("desc")
-        }
-    }
     function handleClick1() {
         setViewMode("Add")
         setView({
-            "author_nickname": token.username,
-            "contributors_nicknames": token.name + " " + token.surname,
+            "author_nickname": `${token.name} ${token.surname}`,
+            "contributors_nicknames": [`${token.name} ${token.surname}`],
             "date_added": new Date().toISOString().slice(0, 10),
             "deadline": new Date().toISOString().slice(0, 10),
             "description": "nowy opis",
@@ -63,11 +55,19 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
                     <option value="priority">priorytet</option>
                     <option value="deadline">deadline</option>
                 </select>
-                <div className="sortDirection" onClick={sortDirection} id="reverse">↑</div>
-                <h2>Questy</h2>
+                <button className="sortDirection" onClick={(e) => {
+                    if (sortdir == "desc") {
+                        setSortdir("asc")
+                    }
+                    else {
+                        setSortdir("desc")
+                    }
+                    e.checked = e.target.checked
+                }} id="rotatecheckbox"><p className={sortdir!="desc" ? "" : "rotate"}>↑</p></button>
 
-                <input type="range" min="100" max="500" id="notesize" />
-                <button id="logout" onClick={handleClick2}>Wyloguj</button>
+                <div className="hiuser">Witaj {token.name} !</div>
+                <button id="menubutton" onClick={setDisplayUsers(true)}>Wyloguj</button>
+                <button id="menubutton" onClick={handleClick2}>Użytkownicy</button>
             </header>
             <div id="notes-wrapper">
             {notes.length > 0 && (
@@ -81,6 +81,7 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
                                     : "green"
                         }>
                             <NoteTile
+                                token={token}
                                 setView={setView} 
                                 author_nickname={note.author_nickname}
                                 contributors_nicknames={note.contributors_nicknames}

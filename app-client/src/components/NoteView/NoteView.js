@@ -5,14 +5,17 @@ import Buttons from './Buttons.js'
 export default function NoteView(props) {
     const [title, setTitle] = useState()
     const [priority, setPriority] = useState()
-    const [rooms, setRooms] = useState()
-    const [author_nickname, setAuthor_nickname] = useState()
-    const [contributors_nicknames, setContributors_nicknames] = useState(props.token.username)
+    const [rooms, setRooms] = useState([])
+    const [author_nickname, setAuthor_nickname] = useState(`${props.token.name} ${props.token.surname}`)
+    const [contributors_nicknames, setContributors_nicknames] = useState([`${props.token.name} ${props.token.surname}`])
     const [date, setDateAdded] = useState()
     const [deadline, setDeadline] = useState()
     const [description, setDescription] = useState()
 
     const [users, setUsers] = useState({})
+
+    const [selectedOption1, setSelectedOption1] = useState(" ")
+    const [selectedOption2, setSelectedOption2] = useState(" ")
 
     const fetchUsers = async () => {
         const response = await fetch('http://localhost:8080/users', {
@@ -28,6 +31,10 @@ export default function NoteView(props) {
             })
         })
     }
+
+    useEffect(() => {
+        console.log(rooms)
+    },[rooms])
 
     useEffect(() => {
         setTitle(props.view.title)
@@ -122,24 +129,34 @@ export default function NoteView(props) {
                     </div>
 
                     <div>
-                        Wybierz sale i osobe<br></br>
-                    <select id="select1" value={rooms} onChange={(e) => setRooms(e.target.value)} >
-                        <option>2</option><option>3</option><option>4</option><option>105</option><option>109</option><option>117</option><option>121</option><option>Serwerownia</option>
+                        Wybierz sale i osoby<br></br>
+                        <select value={selectedOption2} id="select1" onChange={(e) => {
+                            if (!rooms.includes(e.target.value) && e.target.value != "") {
+                                rooms.push(e.target.value)
+                            }
+                            setSelectedOption2(e.target.value)
+                        }}><option value=""></option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="105">105</option>
+                            <option value="109">109</option>
+                            <option value="117">117</option>
+                            <option value="121">121</option>
+                            <option value="Serwerownia">Serwerownia</option>
                     </select>
 
 
                     
                     {users.length > 0 && (
-                        <select id="select1"onChange={(e) => {
-                            if (!contributors_nicknames.includes(e.target.value)) {
-                                setContributors_nicknames(contributors_nicknames+","+e.target.value)
-                                if (contributors_nicknames[0] == ",") {
-                                    setContributors_nicknames(contributors_nicknames.substring(1))
+                            <select value={selectedOption1} id="select1" onChange={(e) => {
+                                if (!contributors_nicknames.includes(e.target.value) && e.target.value != "") {
+                                    contributors_nicknames.push(e.target.value)
                                 }
-                            }
-                        }}><option></option>
+                                setSelectedOption1(e.target.value)
+                            }}><option value=""></option>
                             {users.map(user => (
-                                <option key={user.rowid} value={user.name+" "+user.surname}>
+                                <option key={user.name + " " + user.surname} value={`${user.name} ${user.surname}`}>
                                     {user.name} {user.surname} 
                                 </option>
                             ))}
@@ -147,14 +164,34 @@ export default function NoteView(props) {
                         
                     )}<br></br>
                     </div>
-                    <div id="sale">sss</div>
+                    <div id="sale">
+                        {Array.isArray(rooms)
+                            ? rooms.map(user => (
+                                <li key={rooms.indexOf(user)}>
+                                    {user}
+                                    <div onClick={() => {
+                                        setRooms(rooms.filter(item => item !== user))
+                                    }}>X</div>
+                                </li>
+                            ))
+                            : setRooms(rooms.split(","))
+
+                        }
+                    </div>
 
                     <ul id="osoby">
-                        {contributors_nicknames && (
-                            contributors_nicknames.split(',').map(user => (
-                                <li key={contributors_nicknames.split(',').indexOf(user)}>{user}</li>
-                            ))
-                        )}
+                        {Array.isArray(contributors_nicknames)
+                            ? contributors_nicknames.map(user => (
+                                <li key={contributors_nicknames.indexOf(user)}>
+                                    {user}
+                                    <div onClick={() => {
+                                        setContributors_nicknames(contributors_nicknames.filter(item => item !== user))
+                                    }}>X</div>
+                                </li>
+                              ))
+                            : setContributors_nicknames(contributors_nicknames.split(","))
+                            
+                        }
                     </ul>
                     <div>
 

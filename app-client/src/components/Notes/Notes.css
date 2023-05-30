@@ -26,25 +26,46 @@
 	display: flex;
 }
 
-#TypeSelect {
-	float: left;
-	height: 25px;
-	clear: both;
-	margin-left: 30px;
-	margin-top: 10px;
-	background-color: #D6D6D6;
+#menubutton {
+	height: 2.5vw;
+	font-size: 1.2vw;
+	border: none;
+	margin-left: 0.3vw;
+}
+.hiuser {
+	margin-left: auto;
+	height: 2vw;
+	font-size: 1.5vw;
+	margin-right: 1vw;
+	padding: 0.25vw;
 }
 
-#reverse {
-	color: #D6D6D6;
-	margin-left: 10px;
-	margin-top: 12px;
+#TypeSelect {
+	height: 2.5vw;
+}
+
+.rotate {
+	transform: rotate(180deg);
+	transform-origin: center;
+}
+.sortDirection{
+	padding: 0;
+	height: 2.5vw;
+	margin: 0;
+	width: 2.5vw;
+}
+.sortDirection p {
+	font-size: 1.5vw;
+	text-align: center;
+	height: 2vw;
+	margin: auto;
+	margin: 0;
+	padding: 0;
 }
 
 h2 {
-	margin: auto;
-	margin-right: 400px;
-	clear: both;
+	height: 2.5vw;
+	margin:0;
 }
 
 .Notes ul{
@@ -76,39 +97,33 @@ h2 {
 	float: left;
 	text-align: center;
 }
-
 #add p{
 	margin: 30% auto 0 auto;
 	padding: 0;
 	width: 7em;
 }
-
-	#add:hover {
-		background: linear-gradient(135deg, rgb(161, 154, 104), orange)
-	}
+#add:hover {
+	background: linear-gradient(135deg, rgb(161, 154, 104), orange)
+}
 
 .red .NoteTile {
 	background-color: rgb(166, 99, 91);
 	color: white;
 	border-color: rgb(140, 83, 76);
 }
+.red .NoteTile:hover {
+	background: linear-gradient(135deg, rgb(166, 99, 91), red)
+}
 
-	.red .NoteTile:hover {
-		background: linear-gradient(135deg, rgb(166, 99, 91), red)
-	}
 .green .NoteTile {
 	background-color: rgb(126, 163, 136);
 	color: white;
 	border-color: rgb(39, 161, 72);
 }
-	.green .NoteTile:hover {
-		background: linear-gradient(135deg, rgb(53, 173, 35), #004e92)
-	}
-.NoteTile label {
-	color: #000;
+.green .NoteTile:hover {
+	background: linear-gradient(135deg, rgb(53, 173, 35), #004e92)
 }
 
-#logout{
-	height: 25px;
-	margin-top: 7px;
+.NoteTile label {
+	color: #000;
 }

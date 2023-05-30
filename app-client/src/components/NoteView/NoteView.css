@@ -10,7 +10,7 @@ body {
 }
 
 #select1 {
-    width: 7vw;
+    width: 6.9vw;
     height: 2vw;
     margin: 0.2vw;
     border: 0;
@@ -19,6 +19,7 @@ body {
     background-color: #D6D6D6;
     font-size: 0.8vw;
     text-align: center;
+    margin-bottom: 0.5vw;
 }
 
 #reset {
@@ -39,7 +40,7 @@ body {
 
 textarea {
     width: 12vw;
-    height: 4vw;
+    height: 10vw;
     margin: 0.2vw;
     padding: 0.6vw 1vw 0.4vw;
     border: 0;
@@ -50,10 +51,11 @@ textarea {
 }
 
 #tytul{
-    width: 8vw;
-    height: 0.8vw;
-    margin: 0.4vw;
-    padding: 0.6vw 1vw 0.4vw;
+    width: 11vw;
+    height: 0.9vw;
+    padding: 0.4vw;
+    margin-top: 0.3vw;
+    margin-right: 0.4vw;
     border: 0;
     border-radius: 0.15vw;
     outline: none;
@@ -89,7 +91,9 @@ textarea {
 #sale{
     background-color: #D6D6D6;
     height: 10vw;
-    width: 7vw;
+    margin-left: 0.4vw;
+    margin-bottom: 0.7vw;
+    width: 6.9vw;
     float: left;
     margin-right: 0.3vw;
     color: black;
@@ -98,8 +102,18 @@ textarea {
 #osoby {
     background-color: #D6D6D6;
     height: 10vw;
-    width: 7vw;
-    float: left;
+    width: 6.9vw;
+    margin-right: 0.4vw;
+    margin-bottom: 0.7vw;
+    float: right;
     color: black;
 }
 
+li div{
+    float: right;
+    margin-right: 0.1vw;
+    color: red;
+}
+li:hover {
+    background: linear-gradient(135deg, rgb(136, 137, 168), rgb(136, 137, 168))
+}

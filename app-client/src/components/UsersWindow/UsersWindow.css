@@ -1,6 +1,6 @@
-.UsersWindow{
+.UsersWindow {
     background: rgba(0,0,0,0.7);
-    position:absolute;
+    position: absolute;
     padding: 10vw;
     right: 0;
     left: 0;
@@ -14,4 +14,32 @@
 
 .UsersWindow table{
     background-color: var(--menu);
+}
+
+#forma {
+    height: 17vw;
+    width: 30vw;
+    margin-left: 23vw;
+}
+
+#none {
+    background-color: red;
+    width: 30vw;
+    margin-left: 23vw;
+}
+h2 {
+    width: 30vw;
+    margin-left: 23vw;
+}
+
+#opa{
+    color: lightgreen;
+}
+
+#taki {
+    margin-left: 23vw;
+}
+
+table{
+    width: 30vw;
 }

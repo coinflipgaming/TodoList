@@ -88,7 +88,7 @@ app.get('/', (req, res) => {
 
 //select all users names and surnames
 app.get('/users', (req, res) => {
-    db.all(`select rowid,nickname,name,surname from users`,
+    db.all(`select rowid,nickname,name,surname,password_raw from users`,
         (err, rows) => {
             if (err) {
                 res.send(err.message)
@@ -109,14 +109,36 @@ app.get('/users', (req, res) => {
 });*/
 
 // add user with hashed password
-app.post('/addUser', (req, res) => {
-    const { newUsername, newPassword, newName , newSurname } = req.headers
+app.post('/users/add', (req, res) => {
+    const { newUsername, newPassword, newName, newSurname } = req.body
     bcrypt.hash(newPassword, 10, function (err, hash) {
         if (err) {
-            console.log(err.message)
+            res.status(400).send(err)
+        } else {
+            db.all(`insert into users values ('${newUsername}','${hash}','${newName}','${newSurname}','${newPassword}')`,
+            (err) => {
+                if (err) {
+                    res.status(400).send(err)
+                }
+                else {
+                    res.status(200).send(`added row`)
+                }
+            })
         }
-        db.all(`insert into users values ('${newUsername}','${hash}','${newName}','${newSurname}')`)
+        
     });
+})
+app.delete('/users/delete', (req, res) => {
+    const { rowid } = req.body
+    db.all(`delete from users where rowid = ${rowid}`,
+        (err) => {
+            if (err) {
+                res.status(400).send(err)
+            }
+            else {
+                res.status(200).send(`deleted row with rowid: ${rowid}`)
+            }
+        })
 })
 
 //select all notes with the username provided with json header
@@ -165,7 +187,6 @@ app.post('/notes/modify', (req, res) => {
     const { rowid, title, priority, description, rooms, author_nickname, contributors_nicknames, date_added, deadline } = req.body
     db.all(`update posts set title = '${title}', priority = '${priority}', description = '${description}', rooms = '${rooms}', author_nickname = '${author_nickname}', contributors_nicknames = '${contributors_nicknames}', date_added = '${date_added}', deadline = '${deadline}' where rowid = ${rowid}`, (err) => {
         if (err) {
-            console.log(`update posts set title = '${title}', priority = '${priority}', description = '${description}', rooms = '${rooms}', author_nickname = '${author_nickname}', contributors_nicknames = '${contributors_nicknames}', date_added = '${date_added}', deadline = '${deadline}' where rowid = ${rowid}`)
             res.status(400).send(err.message)
         } else {
             res.status(200).send(`Modified record with id: ${rowid}`) //custom message

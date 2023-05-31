@@ -56,18 +56,13 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
                     <option value="deadline">deadline</option>
                 </select>
                 <button className="sortDirection" onClick={(e) => {
-                    if (sortdir == "desc") {
-                        setSortdir("asc")
-                    }
-                    else {
-                        setSortdir("desc")
-                    }
+                    handleClick4()
                     e.checked = e.target.checked
                 }} id="rotatecheckbox"><p className={sortdir!="desc" ? "" : "rotate"}>↑</p></button>
 
                 <div className="hiuser">Witaj {token.name} !</div>
-                <button id="menubutton" onClick={setDisplayUsers(true)}>Wyloguj</button>
-                <button id="menubutton" onClick={handleClick2}>Użytkownicy</button>
+                <button id="menubutton" onClick={handleClick2}>Wyloguj</button>
+                <button id="menubutton" onClick={handleClick3}>Użytkownicy</button>
             </header>
             <div id="notes-wrapper">
             {notes.length > 0 && (
@@ -104,4 +99,15 @@ export default function Notes({ token, notes, setToken, setNotes, setView, setVi
             </div>
         </div>
     )
+    function handleClick4() {
+        if (sortdir == "desc") {
+            setSortdir("asc")
+        }
+        else {
+            setSortdir("desc")
+        }
+    }
+    function handleClick3() {
+        setDisplayUsers(true)
+    }
 }

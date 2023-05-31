@@ -4,12 +4,20 @@ import Notes from './components/Notes/Notes.js'
 import StickyNotes from './components/StickyNotes/StickyNotes.js'
 import NoteView from './components/NoteView/NoteView.js'
 import LoginForm from './components/LoginForm/LoginForm.js'
+import UsersWindow from './components/UsersWindow/UsersWindow.js'
 
 function App() {
     const [token, setToken] = useState(false);
     const [notes, setNotes] = useState([])
     const [viewMode, setViewMode] = useState("")
     const [view, setView] = useState();
+    const [displayUsers, setDisplayUsers] = useState(false);
+
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        console.log(users)
+    },[users])
 
     useEffect(() => {
         setView({
@@ -25,7 +33,21 @@ function App() {
             })
     },[token])
 
-    function refreshNotes(){
+    function refreshUsers() {
+        fetch('http://localhost:8080/users', {
+            mode: 'cors',
+            headers: {
+                "username": token.username,
+                "password": token.password
+            }
+        }).then((res) => {
+            setUsers(res.json().then(data => {
+                setUsers(data)
+            }))
+        })
+    }
+
+    function refreshNotes() {
         fetch('http://localhost:8080/notes', {
             mode: 'cors',
             headers: {
@@ -41,20 +63,24 @@ function App() {
         })
     }
 
-    //return login form
     if (!token || token.auth === false) {
-        return <LoginForm setToken={ setToken } />
+        return <LoginForm setToken={setToken} />
     }
 
-    //return basic website if logged in
     return (
         <div className="App">
 
-            <NoteView refreshNotes={refreshNotes} view={view} token={token} viewMode={viewMode}/>
 
-            <Notes token={token} setToken={setToken} notes={notes} setNotes={setNotes} setView={setView} setViewMode={setViewMode}/>
+            <NoteView users={users} setUsers={setUsers} refreshNotes={refreshNotes} view={view} token={token} viewMode={viewMode} refreshUsers={refreshUsers} />
+
+            <Notes setDisplayUsers={setDisplayUsers} token={token} setToken={setToken} notes={notes} setNotes={setNotes} setView={setView} setViewMode={setViewMode}/>
 
             <StickyNotes token={token} />
+
+
+            {displayUsers === true &&
+                <UsersWindow setUsers={setUsers} token={token} setDisplayUsers={setDisplayUsers} users={users} refreshUsers={refreshUsers} />
+            }
 
         </div>
     )

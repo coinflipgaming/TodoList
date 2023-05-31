@@ -1,0 +1,17 @@
+.UsersWindow{
+    background: rgba(0,0,0,0.7);
+    position:absolute;
+    padding: 10vw;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    text-align: center;
+}
+.UsersWindow form, .UsersWindow h2{
+    background-color: var(--menu)
+}
+
+.UsersWindow table{
+    background-color: var(--menu);
+}

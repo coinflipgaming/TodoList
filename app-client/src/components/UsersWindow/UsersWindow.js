@@ -16,23 +16,23 @@ export default function UsersWindow(props) {
 
     return (
         <div className="UsersWindow">
-            <h2>Użytkownicy</h2><div onClick={handleClick1}>x</div>
-            <form>
-                <label for="name_inpt">Imie</label>
+            <h2>Użytkownicy</h2><div onClick={handleClick1} id="none">x</div>
+            <form id="forma">
+                <label for="name_inpt">Imie</label><br></br>
                 <input id="name_inpt" value={name} onChange={(e) => { setName(e.target.value) }} />
                 <br />
-                <label for="surname_inpt">Nazwisko</label>
+                <label for="surname_inpt">Nazwisko</label><br></br>
                 <input id="surname_inpt" value={surname} onChange={(e) => { setSurname(e.target.value) }} />
                 <br />
-                <label for="nickname_inpt">Login</label>
+                <label for="nickname_inpt">Login</label><br></br>
                 <input id="nickname_inpt" value={nickname} onChange={(e) => { setNickname(e.target.value) }} />
                 <br />
-                <label for="password_inpt">Hasło</label>
+                <label for="password_inpt">Hasło</label><br></br>
                 <input id="password_inpt" value={password} onChange={(e) => { setPassword(e.target.value) }} />
                 <br />
-                <div className="addbtn" onClick={fetchAddUser}>Dodaj</div>
+                <div className="addbtn" onClick={fetchAddUser} id="opa">Dodaj</div>
             </form>
-            <table>
+            <table id="taki">
                 {users.length > 0 &&
                     <>
                     <tr>
@@ -42,7 +42,7 @@ export default function UsersWindow(props) {
                         <td>hasło</td>
                     </tr>
                     {users.map(user => (
-                        <ul>
+                        <tr>
                             <td>{user.name}</td>
                             <td>{user.surname}</td>
                             <td>{user.nickname}</td>
@@ -63,7 +63,7 @@ export default function UsersWindow(props) {
                                 })
                                 props.refreshUsers()
                             }}>x</td>
-                        </ul>
+                        </tr>
                     ))}
                     </>
                 }
